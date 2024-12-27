@@ -6,3 +6,9 @@ static/
 
 # System files
 .DS_Store
+
+# R environment files
+renv/library/
+.Rhistory
+.RData
+.Ruserdata
