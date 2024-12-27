@@ -30,7 +30,7 @@ jobs:
       - uses: r-lib/actions/setup-renv@v2
 
       - name: Install hugo
-        run: blogdown::install_hugo()
+        run: blogdown::install_hugo("0.123.8")
         shell: Rscript {0}
 
       - name: Generate PDFs
