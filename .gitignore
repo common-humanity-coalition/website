@@ -9,6 +9,7 @@ static/
 
 # R environment files
 renv/library/
-.Rhistory
 .RData
+.Rapp.history
+.Rhistory
 .Ruserdata
