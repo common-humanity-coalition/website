@@ -1,0 +1,8 @@
+# Generated files
+public/
+resources/
+static/
+.hugo_build.lock
+
+# System files
+.DS_Store
