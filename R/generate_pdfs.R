@@ -1,6 +1,5 @@
 # Script to generate PDFs from R Markdown files
-library(pacman)
-p_load(rmarkdown, fs)
+library(rmarkdown, fs)
 
 #' Generate PDFs from R Markdown files in a directory
 #' 
