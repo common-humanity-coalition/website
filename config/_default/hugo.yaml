@@ -5,7 +5,7 @@ theme: "theme-research-group"
 # This file is formatted using YAML syntax - learn more at https://learnxinyminutes.com/docs/yaml/
 
 title: Common Humanity Coalition # Website name
-baseURL: 'https://commonhumanity.us/' # Website URL
+baseURL: 'https://common-humanity-coalition.github.io/website/' # Website URL
 
 ############################
 ## LANGUAGE

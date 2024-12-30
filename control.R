@@ -1,16 +1,10 @@
 ### Setting workind directory
-setwd("/Users/davidjacques/Documents/Projects/common_humanity_coalation/website/")
+setwd("/Users/davidjacques/Documents/Projects/common_humanity_coalation_website/")
 
 ### Loading libraries
-library(pacman)
-p_load(blogdown)
+library(renv)
+renv::load()
 
-# Source helper functions
-source("R/generate_pdfs.R")
-source("R/deploy_site.R")
-
-# Generate PDFs for reports
-generate_report_pdfs("content/reports/tree-equity-score")
 
 # new_site(theme = "HugoBlox/theme-research-group")
 
