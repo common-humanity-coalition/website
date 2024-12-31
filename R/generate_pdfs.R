@@ -1,5 +1,5 @@
 # Script to generate PDFs from R Markdown files
-library(rmarkdown, fs)
+renv::load()
 
 #' Generate PDFs from R Markdown files in a directory
 #' 
@@ -36,7 +36,7 @@ generate_report_pdfs <- function(source_dir, base_dir = getwd()) {
     
     # Render the PDF
     tryCatch({
-      render(
+      rmarkdown::render(
         input = rmd_file,
         output_format = "pdf_document",
         output_file = pdf_path,
