@@ -15,7 +15,7 @@ We are working to strengthen Ottawa's Tree Equity Score by removing the skin col
 
 We have prepared a detailed report titled "Moving Beyond Skin Colour and Race: Strengthening Ottawa's Tree Equity Score" that outlines our concerns and recommendations. The report demonstrates how removing the skin colour and race variable would maintain the score's effectiveness while better aligning with Ottawa's existing policies and community values. 
 
-[Read the report](/reports/tree-equity-score) | [Download report PDF](/reports/tree-equity-score.pdf)
+[Read the report](../../reports/tree-equity-score/) | [Download report PDF](../../reports/tree-equity-score.pdf)
 
 ## 2. Committee Delegation
 
