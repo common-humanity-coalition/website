@@ -2,14 +2,12 @@
 setwd("/Users/davidjacques/Documents/Projects/common_humanity_coalation_website/")
 
 ### Loading libraries
-library(renv)
-renv::load()
-
+library(blogdown)
 
 # new_site(theme = "HugoBlox/theme-research-group")
 
 # Build the site
-blogdown::build_site()
+blogdown::build_site(build_rmd = TRUE)
 
 # Optionally serve the site locally
 serve_site()

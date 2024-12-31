@@ -38,12 +38,6 @@ jobs:
         run: blogdown::install_hugo("0.123.8")
         shell: Rscript {0}
 
-      - name: Generate PDFs
-        run: |
-          source("R/generate_pdfs.R")
-          generate_report_pdfs("content/reports/tree-equity-score")
-        shell: Rscript {0}
-
       - name: Build site
         run: blogdown::build_site(TRUE)
         shell: Rscript {0}
