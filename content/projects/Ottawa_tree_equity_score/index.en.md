@@ -27,4 +27,4 @@ We are helping coalition members connect with their city councillors to share th
 
 ## Help us make a difference
 
-We are looking for volunteers to help us with this project. If you are interested in joining us, please [contact us](/contact).
+We are looking for volunteers to help us with this project. If you are interested in joining us, please [contact us](../../contact).
