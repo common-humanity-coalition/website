@@ -35,7 +35,7 @@ jobs:
           sudo apt-get install -y texlive-base texlive-latex-recommended texlive-fonts-recommended
 
       - name: Install hugo
-        run: blogdown::install_hugo("0.123.8")
+        run: blogdown::install_hugo("0.145.0")
         shell: Rscript {0}
 
       - name: Build site
