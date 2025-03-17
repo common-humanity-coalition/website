@@ -19,7 +19,7 @@ options(
   # build .Rmd to .md; to build to .html (via Pandoc), set this option to 'html'
   blogdown.method = 'html',
   # fix Hugo version
-  blogdown.hugo.version = "0.123.8",
+  blogdown.hugo.version = "0.145.0",
   # Run build.R before Hugo builds
   blogdown.hugo.beforeBuild = "R/build.R"
 )

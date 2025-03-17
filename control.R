@@ -1,15 +1,23 @@
-### Setting workind directory
-setwd("/Users/davidjacques/Documents/Projects/common_humanity_coalation_website/")
+### Setting working directory
+setwd("/Users/davidjacques/Documents/Projects/common_humanity_coalation/Projects/website/")
 
-### Loading libraries
+### Initialize renv (if needed) and restore packages
+if (!requireNamespace("renv", quietly = TRUE)) {
+  install.packages("renv")
+}
+
+# Restore packages from lockfile
+# renv::restore()
+
+# Now we can load blogdown
 library(blogdown)
-
-# new_site(theme = "HugoBlox/theme-research-group")
 
 # Build the site
 blogdown::build_site(build_rmd = TRUE)
 
 # Optionally serve the site locally
-serve_site()
+# uncomment the line below to serve the site
+blogdown::serve_site()
 
-blogdown::stop_server()
+# Stop the server when done
+# blogdown::stop_server()
