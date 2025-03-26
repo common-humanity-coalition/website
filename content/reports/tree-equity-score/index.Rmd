@@ -1,7 +1,8 @@
 ---
-title: "Moving Beyond Skin Colour and Race: Strengthening Ottawa's Tree Equity Score"
+title: "Moving Beyond Skin Colour and Race: Strengthening Ottawa's Tree Score Methodology"
 subtitle: "A Proposal to the Environment and Climate Change Committee"
-date: "2024-11-22"
+date: "2025-03-21"
+author: "David Jacques (Chair, Common Humanity Coalition)"
 output:
   pdf_document:
     toc: false
@@ -12,60 +13,52 @@ output:
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-On June 18th 2024, the Environment and Climate Change Committee directed staff to implement the American Forests' Tree Equity Score methodology. At the time the committee seems to not have been aware of the specific details of the methodology.
+On June 18th 2024, the Environment and Climate Change Committee directed staff to implement the American Forests' Tree Equity Score methodology. At the time, the committee seems not to have been aware of a critical detail: the methodology explicitly uses residents' skin colour and racial classification as one of seven equally-weighted factors in determining where trees should be planted.
 
-The present report proposes strengthening the Tree Equity Score by focusing on our shared environmental needs rather than immutable characteristics. This approach recognizes the unique circumstances of each resident while emphasizing our common aspirations for a healthier urban environment. The proposed modification maintains the score's effectiveness while better reflecting our community's values of mutual collaboration and collective progress.
+Specifically, the current implementation plan will use Statistics Canada's "visible minority" data from the 2021 Census—where Ottawa residents were asked to categorize themselves as "White," "Black," "Arab," and other racial/skin colour options—as a direct input into tree planting decisions.
 
-When the Tree Equity Score next comes before the committee, I respectfully ask that you direct staff to remove skin colour and race from the methodology.
+This report proposes improving the Tree Equity Score methodology by focusing on our shared environmental needs rather than immutable characteristics. By removing the skin colour and race factor while retaining the six socioeconomic and environmental factors, we can create a more effective approach that recognizes each resident's unique circumstances while emphasizing our common aspirations for a healthier urban environment.
 
-# Background
+# Why the Current Approach Needs Refinement
 
-The Tree Equity Score, as developed by [American Forests](https://www.treeequityscore.org/methodology), is a composite measure that combines tree canopy goals, existing coverage gaps, and a Priority Index to determine areas for tree planting. The Priority Index is a sub-component that incorporates seven equally-weighted indicators to assess community needs, including an indicator that uses census data on skin colour and race. In the city's implementation, this data comes from the 2021 census question that explicitly asks respondents to categorize themselves by skin colour and race.
+Ottawa's commitment to effective environmental stewardship deserves an implementation that matches our city's values and unique context. The current scoring methodology presents several challenges:
 
-The city's current Urban Forest Management Plan takes a different approach, focusing on environmental and socioeconomic factors without reference to skin colour or race. This established framework has successfully guided Ottawa's urban forestry decisions to date.
+**Individual Residents Reduced to Categories**  
+The current approach inadvertently suggests that environmental needs are determined by skin colour rather than individual circumstances. When two neighbours with identical incomes, housing situations, and health vulnerabilities receive different prioritization solely based on skin colour or racial classification, we've moved away from seeing the whole person. Ottawa deserves an approach that recognizes the complex, multifaceted nature of each resident's environmental needs.
 
-# Downsides of the Current Implementation of the Tree Equity Score
+**Community Division Instead of Collaboration**  
+Environmental challenges like urban heat islands affect entire neighbourhoods regardless of demographic composition. When we embed skin colour and racial categories into environmental decision-making, we risk framing civic improvements as a competition between groups rather than investments in our shared spaces. Ottawa's history shows that our most successful environmental initiatives have been those uniting citizens in collaborative stewardship across all backgrounds.
 
-1. **promotes race essentialism**
-   - The current methodology assumes, without adequate evidence, that skin colour and race are determinative factors in the environmental needs of Ottawa residents.
-   - This approach reinforces outdated notions that different racial groups have inherently different relationships with nature.
-   - Such categorization contradicts modern understanding that environmental needs are universal human concerns.
+**Imported Solution for a Canadian Context**  
+The current methodology represents a significant departure from Ottawa's established Urban Forest Management Plan, which has guided our city's forestry decisions effectively without reference to skin colour or race. Before adopting an American methodology designed for cities with different historical contexts, we should consider whether it truly serves Ottawa's unique character and environmental needs.
 
-2. **divides communities**
-   - Using racial classifications in public policy decisions creates artificial divisions.
-   - Environmental benefits of trees transcend racial and ethnic categories.
-   - The current approach risks fragmenting neighborhoods along racial lines rather than uniting them through shared environmental goals.
+# Benefits of a Refined Approach
 
-3. **inconsistent with city's Urban Forest Management Plan**
-   - The current methodology represents a significant departure from Ottawa's established Urban Forest Management Plan.
-   - The Plan emphasizes community cohesion and makes no reference to skin colour or race.
-   - The current approach contradicts the Plan's approach to equity in urban forestry.
+By modifying the tree distribution score to focus solely on environmental and socioeconomic factors, Ottawa can achieve several meaningful benefits:
 
-# Benefits of Removing Skin Colour and Race from the Score
+**Precision in Meeting Environmental Needs**  
+A refined approach responds to actual circumstances rather than demographic assumptions. Factors like income, age, health vulnerability, and heat exposure provide more accurate indicators of where trees will have the greatest positive impact. This ensures resources flow to those with genuine environmental vulnerability, creating more effective outcomes based on verifiable needs rather than proxy categories.
 
-1. **united communities**
-   - Trees provide universal benefits: shade, clean air, and natural beauty for all residents.
-   - Urban forests can serve as gathering spaces where citizens come together as neighbours.
-   - Shared green spaces naturally foster cross-cultural understanding and community connections.
-   - Environmental stewardship can become a common cause that unites Ottawans.
+**Environmental Leadership with a Canadian Perspective**  
+Ottawa has an opportunity to demonstrate environmental leadership by developing solutions tailored to our Canadian context. Rather than uncritically importing American methodologies, we can build on our past successes with an approach that respects our city's unique character and environmental priorities. This maintains consistency in our environmental governance while positioning Ottawa as a thoughtful leader in urban forestry.
 
-2. **strengthened civic unity**
-   - Focusing on socioeconomic and environmental factors emphasizes our common concerns.
-   - Community-based approach to urban forestry reinforces collective place-based responsibility.
-   - Environmental improvements benefit entire neighborhoods regardless of residents immutable characteristics.
-   - Creates opportunities for citizens to work together toward common environmental goals.
+**Uniting Residents Through Shared Stewardship**  
+Trees and green spaces are community assets that naturally bring residents together across differences. When our environmental initiatives focus on shared benefits rather than group categories, they create opportunities for residents to cooperate on neighbourhood improvement projects. This approach builds a civic identity around our collective responsibility for Ottawa's urban forest, framing environmental improvements as something we achieve together as Ottawans.
+
+**More Effective Use of Limited Resources**  
+The six remaining factors in the Tree Equity Score provide robust, sufficient data to identify high-priority planting areas without introducing potentially divisive elements. This focused approach directs our limited forestry resources where they will have the greatest impact on reducing urban heat islands and air pollution, achieving measurable improvements in our urban forest and climate resilience.
 
 # Implementation Steps
 
-1. Direct staff to modify the Tree Equity Score calculation by removing the skin colour/race variable from the Priority Index.
-2. Maintain current data collection and analysis for remaining variables.
-3. Apply adjusted formula using 6 factors instead of 7 (see appendix for details).
-4. Require staff to report back to committee on implementation progress and outcomes
+1.  Direct staff to modify the Tree Equity Score by removing the skin colour/race variable from the Priority Index.
+2.  Maintain current data collection and analysis for the remaining variables.
+3.  Apply the adjusted formula using six factors instead of seven (see appendix for details).
+4.  Require staff to report back to the committee on implementation progress and outcomes.
+5.  Develop a communication plan to inform the public about the change, emphasizing transparency and the rationale behind it, highlighting the benefits of a unified approach to urban forestry.
 
 # Recommendation and Path Forward
 
-The Tree Equity Score can be strengthened by removing references to skin colour and race while maintaining its core purpose of identifying high-priority planting areas. This modification aligns with Ottawa's values of community unity and environmental stewardship. By focusing on socioeconomic and environmental factors, we can create a more effective and unifying approach to urban forest management that brings citizens together rather than dividing them. This change will ensure our urban forestry initiatives continue to build stronger, more connected communities while delivering environmental benefits to Ottawa residents.
-
+The Tree Equity Score can be strengthened by removing references to skin colour and race while maintaining its core purpose of identifying high-priority planting areas. This modification aligns with Ottawa's values of community unity and environmental stewardship. By focusing on socioeconomic and environmental factors, we can create a more effective and unifying approach to urban forest management that brings citizens together.
 \pagebreak
 \vspace{10cm}
 
@@ -100,90 +93,83 @@ This simple adjustment maintains the mathematical integrity of the index while r
 
 ## Communication with city staff
 
-Over the summer of 2024, I engaged in detailed correspondence with several city staff members regarding the Tree Equity Score implementation. Staff were responsive and helpful in addressing questions and providing additional information. Through these exchanges, staff made several key points:
+Over the summer of 2024, I engaged in detailed correspondence with several city staff members regarding the Tree Equity Score implementation. Staff were responsive and helpful in addressing questions and providing additional information. Through these exchanges, we had a productive discussion about the technical and policy considerations.
 
-- Staff clarified that while the Tree Equity Score uses Statistics Canada's "visible minority" data, they view this as distinct from directly using skin colour in calculations.
+Staff clarified that while the Tree Equity Score uses Statistics Canada's "visible minority" data, they view this as distinct from directly using skin colour in calculations. Staff indicated they had reviewed the literature and were satisfied that the American Forests Methodology represents best practices. They also emphasized that Council has directed implementation of the American Forests methodology as approved at a public committee meeting. Staff provided academic studies related to neighborhood microclimates and vulnerability to heat stress, and noted their focus is now on implementation rather than methodology revision, given Council's direction.
 
-- Staff indicated they had reviewed the literature and were satisfied that the American Forests Methodology represents best practices for incorporating equity into tree planting programs.
-
-- Staff emphasized that Council has directed implementation of the American Forests methodology as approved at a public committee meeting.
-
-- Staff provided academic studies related to neighborhood microclimates and vulnerability to heat stress.
-
-- Staff noted their focus is now on implementation rather than methodology revision, given Council's direction.
-
-In response to these points, I provided detailed analysis of the Census visible minority question and suggested a straightforward mathematical adjustment that would maintain the core objectives while removing the race and skin colour variable. While staff maintained their position on implementing the approved methodology, the exchange helped clarify both the technical and policy considerations at play.
+In response, I provided detailed analysis of the Census "visible minority" question and suggested a straightforward mathematical adjustment that would maintain the core objectives while removing the race and skin colour variable.
 
 ## Skin colour and race are used in the Tree Equity Score
 
-The Tree Equity Score directly incorporates skin colour and race through its Priority Index component. Specifically, one of the seven equally-weighted variables in the Priority Index is the percentage of "people of color" in each neighborhood. 
+The Tree Equity Score directly incorporates skin colour and race through its Priority Index. One of the seven equally-weighted variables is the percentage of "people of color" in each neighborhood.
 
-For Ottawa's implementation, staff will use Statistics Canada's "visible minority" data from the 2021 Census to populate this variable. Statistics Canada defines "visible minority" in accordance with the Employment Equity Act as "persons, other than Aboriginal peoples, who are non-Caucasian in race or non-white in colour."[^2] This data comes from a Census question that explicitly asked Ottawa residents to categorize themselves by skin colour and race:
+For Ottawa's implementation, staff will use Statistics Canada's "visible minority" data from the 2021 Census. Statistics Canada defines "visible minority" as "persons, other than Aboriginal peoples, who are non-Caucasian in race or non-white in colour."[^2] This definition comes directly from the Employment Equity Act. The Census question explicitly asked Ottawa residents to categorize themselves by skin colour and race:
 
 > "Is this person:"
+>
+> *   White
+> *   South Asian (e.g., East Indian, Pakistani, Sri Lankan)
+> *   Chinese
+> *   Black
+> *   Filipino
+> *   Arab
+> *   Latin American
+> *   Southeast Asian (e.g., Vietnamese, Cambodian, Laotian, Thai)
+> *   West Asian (e.g., Iranian, Afghan)
+> *   Korean
+> *   Japanese
+> *   Other group—specify
 
-> - White
-> - South Asian (e.g., East Indian, Pakistani, Sri Lankan)
-> - Chinese
-> - Black
-> - Filipino
-> - Arab
-> - Latin American
-> - Southeast Asian (e.g., Vietnamese, Cambodian, Laotian, Thai) 
-> - West Asian (e.g., Iranian, Afghan)
-> - Korean
-> - Japanese
-> - Other group—specify
-
-This explicit use of skin colour and race-based data in the Tree Equity Score raises important considerations about the appropriateness of using immutable characteristics in municipal decision-making.
+This explicit use of skin colour and race-based data in the Tree Equity Score raises important considerations about using immutable characteristics in municipal decision-making.
 
 ## Studies on race and heat vulnerability
 
-Staff have indicated that one of the justifications for including the visible minority data in the Tree Equity Score is because this population tends to be more vulnerable to such hazards as extreme heat, which the urban tree canopy can help to offset. To support this claim, staff provided the following studies:
+Staff provided studies to support the inclusion of "visible minority" data, arguing this population is more vulnerable to extreme heat:
 
-1. Neighborhood microclimates and vulnerability to heat stress: https://keep-dev.lib.asu.edu/system/files/2022-05/microclimates_0_0.pdf
+1.  Neighborhood microclimates and vulnerability to heat stress: [https://keep-dev.lib.asu.edu/system/files/2022-05/microclimates\_0\_0.pdf](https://keep-dev.lib.asu.edu/system/files/2022-05/microclimates_0_0.pdf)
 
-2. Assessing Vulnerability to Urban Heat: A Study of Disproportionate Heat Exposure and Access to Refuge by Socio-Demographic Status in Portland, Oregon: https://www.mdpi.com/1660-4601/15/4/640
+2.  Assessing Vulnerability to Urban Heat: A Study of Disproportionate Heat Exposure and Access to Refuge by Socio-Demographic Status in Portland, Oregon: [https://www.mdpi.com/1660-4601/15/4/640](https://www.mdpi.com/1660-4601/15/4/640)
 
-3. The Effects of Historical Housing Policies on Resident Exposure to Intra-Urban Heat: A Study of 108 US Urban Areas: https://www.mdpi.com/2225-1154/8/1/12#B21-climate-08-00012
+3.  The Effects of Historical Housing Policies on Resident Exposure to Intra-Urban Heat: A Study of 108 US Urban Areas: [https://www.mdpi.com/2225-1154/8/1/12#B21-climate-08-00012](https://www.mdpi.com/2225-1154/8/1/12#B21-climate-08-00012)
 
-4. Residential housing segregation and urban tree canopy in 37 US Cities: https://www.nature.com/articles/s42949-021-00022-0#Abs1
+4.  Residential housing segregation and urban tree canopy in 37 US Cities: [https://www.nature.com/articles/s42949-021-00022-0#Abs1](https://www.nature.com/articles/s42949-021-00022-0#Abs1)
 
 ### Evaluating evidence of causation
 
-To establish that skin colour or race, which underly the definition of "visible minority", should influence tree planting decisions, the evidence would need to demonstrate one of two causal mechanisms:
+To justify using skin colour or race in tree planting decisions, evidence would need to demonstrate a causal mechanism:
 
-1. **Biological mechanism:** Evidence that skin colour directly affects an individual's susceptibility to heat stress through physiological processes like solar radiation absorption or heat retention.
-
-2. **Discriminatory practices:** Evidence that race-based housing discrimination in Ottawa led to:
-   - Systematic placement of visible minorities in areas with less tree cover
-   - Unequal distribution of environmental amenities that mitigate heat
-   - Ongoing patterns of discriminatory development that affect current conditions
+1.  **Biological mechanism:** Evidence that skin colour directly affects heat stress susceptibility.
+2.  **Discriminatory practices:** Evidence of race-based housing discrimination in *Ottawa* leading to unequal environmental conditions.
 
 ### Analysis of the provided studies
 
-The evidence provided by staff falls into two categories:
+The evidence falls into two categories:
 
-1. **Correlation studies** (Studies 1 and 2):
-   - Show statistical relationships between demographic characteristics and heat exposure
-   - Do not establish causal mechanisms
-   - Cannot distinguish between correlation and causation
+1.  **Correlation studies** (Studies 1 and 2): Show statistical relationships but do *not* establish causation.
+2.  **Historical discrimination studies** (Studies 3 and 4): Demonstrate how discriminatory housing policies in the *United States* created environmental disparities.
 
-2. **Historical discrimination studies** (Studies 3 and 4):
-   - Demonstrate how housing policies in the United States like redlining created environmental disparities
-   - Show lasting effects of discriminatory practices on urban tree cover
-   - Provide evidence of causal mechanisms through discriminatory policy
-   - Focus exclusively on American cities
+While the historical discrimination studies identify valid causal mechanisms, no comparable data has been presented for Ottawa demonstrating a causal relationship between race and heat vulnerability that would justify its inclusion in the Tree Equity Score. Furthermore, other factors, such as socioeconomic status and historical development patterns unrelated to race, could explain any observed correlations.
 
-While the historical discrimination studies identify valid causal mechanisms, staff have not provided evidence that similar discriminatory practices shaped Ottawa's development patterns. If such discrimination existed, it would warrant specific policy interventions to address these historical wrongs. However, adjusting current tree planting formulas based on race and skin colour does not effectively address historical discrimination, particularly without evidence that such discrimination occurred in Ottawa's development or is occurring today.
 
 ## Democratic Governance and Local Authority in Policy Implementation
-
 Staff indicated they had reviewed the literature and were satisfied that the American Forests Methodology represents best practices for incorporating equity into tree planting programs.
 
-This appeal to "best practices" raises fundamental concerns about democratic governance. In our system of representative democracy, elected officials, not administrative staff, hold the authority to determine how municipal resources should be allocated. While staff expertise is valuable for implementing policies, core decisions about resource distribution must remain with Council as the democratically elected body representing Ottawa's citizens.
+This appeal to "best practices" raises concerns about democratic governance. In our system, elected officials, not administrative staff, hold the authority to determine how municipal resources are allocated. While staff expertise is valuable, core decisions about resource distribution must remain with Council. Different communities have varying priorities. What works in one jurisdiction may not align with Ottawa's needs and values. By deferring to external "best practices," we risk undermining the principle that citizens, through their elected representatives, should determine how their collective resources are used.
 
-Different communities have varying priorities and values that shape how they want their tax dollars spent. What works in one jurisdiction may not align with Ottawa's needs and values. By deferring to external "best practices," we risk undermining the fundamental principle that citizens, through their elected representatives, should determine how their collective resources are used.
+
+## Americanization of Ottawa, our nation's capital
+
+Recent political rhetoric from American leaders has, at times, suggested a blurring of national identities by implying that Canada could one day be relegated to the status of a 51st state. Each time we uncritically adopt American methodologies—particularly for our national capital—we inadvertently provide ammunition to those who fail to recognize Canada's distinct identity and sovereignty.
+
+The wholesale importation of the American Forests' Tree Equity Score represents more than just a technical decision—it symbolizes a missed opportunity to demonstrate Canadian policy independence. As the seat of our federal government, Ottawa holds special significance in showcasing distinctly Canadian approaches to common challenges. When we directly transplant American methodologies without substantial adaptation to our local context, we reinforce the harmful narrative that Canadian solutions are merely derivatives of American ones.
+
+Ottawa can demonstrate meaningful policy independence by:
+- Developing a tree planting strategy that builds upon our existing, successful Urban Forest Management Plan
+- Adapting the useful elements of various approaches while discarding components that conflict with our local values
+- Creating a methodology that reflects our unique urban landscape, climate considerations, and community patterns
+
+A thoughtfully modified tree planting strategy would stand as a small but significant assertion of Ottawa's determination to chart its own course, making decisions based on local needs and values rather than imported frameworks. This sends a clear message that we value our autonomy in even the most practical aspects of governance, from Parliament Hill's highest offices to the placement of trees in our neighbourhoods.
+
 
 [^1]: American Forests. (2023). Tree Equity Score Methodology. Retrieved November 20, 2024, from https://www.treeequityscore.org/methodology
 
