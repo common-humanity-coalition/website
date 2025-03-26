@@ -17,13 +17,13 @@ sections:
     title: Principles
     text: |
       ## Singular Worth
-      Always remembering the distinctive qualities that make each one of us irreplaceable.
+      Every person possesses inherent dignity as an individual, deserving recognition based on their unique qualities.
 
       ## Understanding
-      Fostering the meeting of hearts and minds, we want to inspire a journey of learning and connection that bridges differences.
+      Guiding ourselves with reason and a dedication to truth, we champion the pursuit of understanding as the cornerstone of a thriving society.
 
       ## Common Humanity
-      We dedicate ourselves to bringing our shared experiences to the fore, uniting Canadians through common aspirations, nurturing a sense of our collective human journey.
+      We dedicate ourselves to bringing our shared experiences to the fore, uniting people through common aspirations and our collective human journey.
   design:
     # See Page Builder docs for all section customization options.
     # Choose how many columns the section has. Valid values: '1' or '2'.

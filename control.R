@@ -20,4 +20,4 @@ blogdown::build_site(build_rmd = TRUE)
 blogdown::serve_site()
 
 # Stop the server when done
-# blogdown::stop_server()
+blogdown::stop_server()
