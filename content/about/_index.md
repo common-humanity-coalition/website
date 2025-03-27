@@ -22,6 +22,29 @@ sections:
     columns: '1'
 - block: markdown
   content:
+    subtitle: ""
+    text: null
+    title: null
+  design:
+    background:
+      image:
+        filename: Vision_of_Unity.jpg
+        filters:
+          brightness: 1
+        parallax: true
+        position: center
+        size: cover
+        text_color_light: true
+    columns: "1"
+    # css_class: fullscreen
+    spacing:
+      padding:
+      - 100px
+      - "0"
+      - 100px
+      - "0"
+- block: markdown
+  content:
     title: Our guiding principles
     text: |
       ## Singular Worth
@@ -43,6 +66,29 @@ sections:
       The Common Humanity Coalition celebrates the truths that bind us together beyond our surface differences. We all know the warmth of human connection—whether in a parent's embrace, a friend's steadfast support, or a stranger's unexpected kindness. Each of us understands vulnerability—the racing heart before a challenge, the ache of loss, the comfort needed during illness. We recognize in each other the same capacity for joy, grief, love, and hope that defines our shared human condition. By honouring these deeper connections, we advocate for a society where institutions recognize our common journey, where citizenship transcends artificial divisions, and where we face our collective challenges with the solidarity born of knowing that despite our differences, we navigate this life together, sharing the same fundamental human experience.
   design:
     columns: '1'
+- block: markdown
+  content:
+    subtitle: ""
+    text: null
+    title: null
+  design:
+    background:
+      image:
+        filename: Common_Hope.jpeg
+        filters:
+          brightness: 1
+        parallax: true
+        position: center
+        size: cover
+        text_color_light: true
+    columns: "1"
+    # css_class: fullscreen
+    spacing:
+      padding:
+      - 100px
+      - "0"
+      - 100px
+      - "0"
 - block: markdown
   content:
     title: Vision
