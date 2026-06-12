@@ -7,8 +7,8 @@ main:
   - name: About
     url: about
     weight: 10
-  - name: Projects
-    url: projects
+  - name: Incident Database
+    url: https://common-humanity-coalition.github.io/incidents/
     weight: 20
   - name: Contact
     url: contact

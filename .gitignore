@@ -1,15 +1,7 @@
 # Generated files
 public/
 resources/
-static/
 .hugo_build.lock
 
 # System files
 .DS_Store
-
-# R environment files
-renv/library/
-.RData
-.Rapp.history
-.Rhistory
-.Ruserdata

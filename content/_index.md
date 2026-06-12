@@ -28,25 +28,15 @@ sections:
     # See Page Builder docs for all section customization options.
     # Choose how many columns the section has. Valid values: '1' or '2'.
     columns: '1'
-- block: collection
+- block: markdown
   content:
-    count: 5
-    filters:
-      author: ""
-      category: ""
-      exclude_featured: true
-      publication_type: ""
-      tag: ""
-    offset: 0
-    order: desc
-    page_type: projects
-    subtitle: 'Take a look at what we are working on'
-    text: null
-    title: Projects
-    show_date: false
+    title: Incident Database
+    text: |
+      When institutions sort people by immutable traits or lose sight of the individual before them, they fall short of the principles we hold in common—Singular Worth, Understanding, and Common Humanity. Our public Incident Database documents these moments across Canada, so that what is recorded can be understood, and what is understood can be changed.
+
+      {{< cta cta_text="Explore the Incident Database" cta_link="https://common-humanity-coalition.github.io/incidents/" cta_new_tab="true" >}}
   design:
-    columns: "2"
-    view: card
+    columns: '1'
 - block: markdown
   content:
     subtitle: ""
