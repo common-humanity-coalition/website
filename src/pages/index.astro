@@ -4,14 +4,16 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import { INCIDENT_DB_URL } from '../lib/site';
 import { withBase } from '../lib/paths';
 
-// Artwork. The hero is the statement piece — a painterly diverse crowd holding
-// hands across a golden prairie at sunrise — set full-bleed behind the
-// organization name. The circular-crowd illustration supports the principles
-// section. Both are routed through Astro's image pipeline (`astro:assets`) so
-// the build emits responsive, optimized variants rather than shipping the
-// ~900 KB originals raw.
-import heroPrairie from '../assets/hero-prairie.jpg';
-import principlesCircle from '../assets/principles-circle.jpg';
+// Artwork. The hero is the statement piece — a painterly scene of people
+// walking together through golden prairie grass toward a sunrise — set
+// full-bleed behind the organization name. The hand-in-hand ring illustration
+// supports the principles section. Both are routed through Astro's image
+// pipeline (`astro:assets`) so the build emits responsive, optimized variants
+// rather than shipping the ~1.8 MB originals raw. (Sources are 1024px square
+// artwork, watermark-cropped to 1024×928; the hero's largest variant is
+// therefore capped at 1024w — intentionally not upscaled.)
+import heroPrairie from '../assets/hero-prairie-walk.png';
+import principlesCircle from '../assets/principles-ring.png';
 
 // Three principles, ported verbatim from the Hugo homepage `Principles` block
 // (content/_index.md).
@@ -39,14 +41,14 @@ const principles = [
          fetchpriority because it is the LCP element. -->
     <Image
       src={heroPrairie}
-      alt="A painterly scene of a diverse crowd standing hand in hand across a golden prairie at sunrise, gazing toward a hopeful horizon."
-      widths={[640, 960, 1280, 1792]}
+      alt="A painterly scene of people walking together through tall golden prairie grass toward a glowing sunrise on the horizon, under a wide teal sky."
+      widths={[640, 768, 1024]}
       sizes="100vw"
       loading="eager"
       fetchpriority="high"
       format="webp"
       quality={63}
-      class="absolute inset-0 -z-20 h-full w-full object-cover object-[50%_38%]"
+      class="absolute inset-0 -z-20 h-full w-full object-cover object-[50%_62%]"
     />
     <!-- Scrim: paper tone fading down over the image for headline contrast,
          plus a faint warm brand tint that keeps the artwork from muddying. -->
@@ -97,8 +99,8 @@ const principles = [
         <div class="order-2 lg:order-1">
           <Image
             src={principlesCircle}
-            alt="A circular illustration of many people of different ages, abilities, and backgrounds standing together holding hands, forming an unbroken ring — humanity in the round."
-            widths={[360, 540, 720, 990]}
+            alt="A flat illustration of stylized people in many colours standing in a ring, hand in hand, forming an unbroken circle — humanity in the round."
+            widths={[360, 540, 720, 1024]}
             sizes="(min-width: 1024px) 40vw, 90vw"
             loading="lazy"
             format="webp"

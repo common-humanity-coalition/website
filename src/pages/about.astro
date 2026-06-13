@@ -5,10 +5,14 @@ import { withBase } from '../lib/paths';
 
 // Artwork for the Vision section. The stained-glass maple leaf is presented
 // deliberately — framed like a piece hung in a gallery — to anchor the Vision.
-// The rainbow swirl is used only as a heavily veiled wash behind the closing
-// pull-quote, under a strong paper overlay so it reads as texture, not clip-art.
-import visionMaple from '../assets/vision-maple.jpg';
-import visionSwirl from '../assets/vision-swirl.jpg';
+//
+// The closing pull-quote was previously set over a heavily veiled wash of a
+// secondary artwork. With the new watercolour art, that wash is so light that
+// under the ~85% paper overlay needed for AA legibility it reads as plain paper
+// — the image adds nothing visible while still shipping a download. So the
+// closing quote now uses a plain paper band finished with a short teal accent
+// rule, which is a cleaner, more intentional close than an invisible backdrop.
+import visionMaple from '../assets/vision-leaf.png';
 
 // Guiding principles, ported verbatim from the Hugo about page
 // (content/about/_index.md → "Our guiding principles" block). The bold lead
@@ -97,8 +101,8 @@ const principles = [
         <div class="overflow-hidden rounded-2xl border border-line bg-surface p-2 shadow-sm">
           <Image
             src={visionMaple}
-            alt="A stained-glass interpretation of the Canadian maple leaf, its panes radiating outward in warm reds, golds, and blues — many distinct pieces forming one shared emblem."
-            widths={[640, 960, 1280, 1792]}
+            alt="A stained-glass Canadian maple leaf made of distinct coloured panes — teal, gold, cream, and warm coral — leaded together into one shared emblem."
+            widths={[640, 768, 1024]}
             sizes="(min-width: 768px) 768px, 92vw"
             loading="lazy"
             format="webp"
@@ -159,23 +163,12 @@ const principles = [
         </p>
       </div>
 
-      <!-- Closing pull-quote over a heavily veiled wash of the rainbow-swirl
-           artwork. A strong paper overlay keeps the swirl at a low-opacity
-           texture (~15% visible) so the line stays the focus and reads AA. -->
-      <figure class="relative isolate mt-10 overflow-hidden rounded-2xl border border-line">
-        <Image
-          src={visionSwirl}
-          alt=""
-          aria-hidden="true"
-          widths={[640, 960, 1280, 1792]}
-          sizes="(min-width: 768px) 768px, 92vw"
-          loading="lazy"
-          format="webp"
-          quality={68}
-          class="absolute inset-0 -z-20 h-full w-full object-cover object-center"
-        />
-        <div class="absolute inset-0 -z-10 bg-paper/85" aria-hidden="true"></div>
+      <!-- Closing pull-quote on a plain paper band, finished with a short teal
+           accent rule. (The previous veiled-wash backdrop is dropped: under the
+           paper overlay required for AA the new watercolour art was invisible.) -->
+      <figure class="mt-10 overflow-hidden rounded-2xl border border-line bg-paper">
         <blockquote class="px-6 py-12 text-center sm:px-12 sm:py-16">
+          <div class="mx-auto mb-6 h-0.5 w-12 rounded-full bg-accent" aria-hidden="true"></div>
           <p class="font-display text-xl font-semibold leading-relaxed text-ink sm:text-2xl">
             This is our vision—a future of shared belonging, individual dignity, and common
             humanity.
