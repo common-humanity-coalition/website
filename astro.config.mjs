@@ -12,6 +12,10 @@ export default defineConfig({
   site: 'https://commonhumanity.us',
   base: '/',
   output: 'static',
+  // Emit and expect directory-style URLs with a trailing slash (e.g. /about/),
+  // matching the directory build output. This avoids host-dropping 301 redirects
+  // from servers that "fix up" /about -> /about/ (notably the local nginx preview).
+  trailingSlash: 'always',
   vite: {
     plugins: [tailwindcss()],
     server: {
