@@ -49,6 +49,19 @@ import contactBanner from '../assets/contact-wash.png';
 
     <section aria-labelledby="form-h" class="mt-12">
       <h2 id="form-h" class="font-display text-2xl font-semibold text-ink">Send us a message</h2>
+      <p class="mt-4 text-base leading-relaxed text-ink-soft">
+        Have you witnessed an incident where an institution fell short of the principles of
+        Singular Worth, Understanding, and Common Humanity? You can report it here. Choose
+        <span class="font-semibold text-ink">Report an incident</span> below and tell us what
+        happened, including any links or sources you can share. Our team reviews every
+        submission before it is documented in the public
+        <a
+          href={INCIDENT_DB_URL}
+          target="_blank"
+          rel="noopener"
+          class="font-semibold text-accent no-underline hover:text-accent-hover"
+        >Incident Database</a>.
+      </p>
       <div class="mt-6 rounded-2xl border border-line bg-surface p-6 sm:p-8">
         <form
           id="contact-form"
@@ -56,6 +69,19 @@ import contactBanner from '../assets/contact-wash.png';
           method="POST"
           class="grid gap-5"
         >
+          <div class="grid gap-1.5">
+            <label for="cf-subject" class="text-sm font-semibold text-ink">Reason for contact</label>
+            <select
+              id="cf-subject"
+              name="subject"
+              class="rounded-md border border-line bg-paper px-3.5 py-2.5 text-sm text-ink transition-colors hover:border-accent-ring focus:border-accent-ring"
+            >
+              <option value="General enquiry">General enquiry</option>
+              <option value="Report an incident">Report an incident</option>
+              <option value="Get involved">Get involved</option>
+            </select>
+          </div>
+
           <div class="grid gap-1.5">
             <label for="cf-name" class="text-sm font-semibold text-ink">Name</label>
             <input
@@ -88,6 +114,7 @@ import contactBanner from '../assets/contact-wash.png';
               required
               rows="5"
               autocomplete="off"
+              placeholder="If you are reporting an incident, please include what happened, the institution involved, when and where it took place, and any links or sources."
               class="resize-y rounded-md border border-line bg-paper px-3.5 py-2.5 text-sm text-ink placeholder:text-ink-faint transition-colors hover:border-accent-ring focus:border-accent-ring"
             ></textarea>
           </div>
