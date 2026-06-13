@@ -1,6 +1,14 @@
 ---
+import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { withBase } from '../lib/paths';
+
+// Artwork for the Vision section. The stained-glass maple leaf is presented
+// deliberately — framed like a piece hung in a gallery — to anchor the Vision.
+// The rainbow swirl is used only as a heavily veiled wash behind the closing
+// pull-quote, under a strong paper overlay so it reads as texture, not clip-art.
+import visionMaple from '../assets/vision-maple.jpg';
+import visionSwirl from '../assets/vision-swirl.jpg';
 
 // Guiding principles, ported verbatim from the Hugo about page
 // (content/about/_index.md → "Our guiding principles" block). The bold lead
@@ -82,7 +90,28 @@ const principles = [
     <!-- Vision -->
     <section aria-labelledby="vision-h" class="mt-12">
       <h2 id="vision-h" class="font-display text-2xl font-semibold text-ink">Vision</h2>
-      <div class="prose-narrative mt-3">
+
+      <!-- Framed artwork: presented like a piece hung in a gallery — contained,
+           rounded, with a thin border, generous whitespace, and a caption. -->
+      <figure class="mt-6">
+        <div class="overflow-hidden rounded-2xl border border-line bg-surface p-2 shadow-sm">
+          <Image
+            src={visionMaple}
+            alt="A stained-glass interpretation of the Canadian maple leaf, its panes radiating outward in warm reds, golds, and blues — many distinct pieces forming one shared emblem."
+            widths={[640, 960, 1280, 1792]}
+            sizes="(min-width: 768px) 768px, 92vw"
+            loading="lazy"
+            format="webp"
+            quality={72}
+            class="w-full rounded-xl"
+          />
+        </div>
+        <figcaption class="mt-3 text-center text-xs italic leading-relaxed text-ink-faint">
+          One emblem, many distinct pieces — a Canada whose strength is its shared belonging.
+        </figcaption>
+      </figure>
+
+      <div class="prose-narrative mt-8">
         <p>
           In the Canada we envision—a Canada of tomorrow—we see a society transformed by the
           recognition of our singular humanity. This is a future where institutions serve all
@@ -128,8 +157,31 @@ const principles = [
           to?&rdquo; but rather &ldquo;who are you, as a person, and how can we ensure you have
           the opportunity to flourish within the communities you choose?&rdquo;
         </p>
-        <p>This is our vision—a future of shared belonging, individual dignity, and common humanity.</p>
       </div>
+
+      <!-- Closing pull-quote over a heavily veiled wash of the rainbow-swirl
+           artwork. A strong paper overlay keeps the swirl at a low-opacity
+           texture (~15% visible) so the line stays the focus and reads AA. -->
+      <figure class="relative isolate mt-10 overflow-hidden rounded-2xl border border-line">
+        <Image
+          src={visionSwirl}
+          alt=""
+          aria-hidden="true"
+          widths={[640, 960, 1280, 1792]}
+          sizes="(min-width: 768px) 768px, 92vw"
+          loading="lazy"
+          format="webp"
+          quality={68}
+          class="absolute inset-0 -z-20 h-full w-full object-cover object-center"
+        />
+        <div class="absolute inset-0 -z-10 bg-paper/85" aria-hidden="true"></div>
+        <blockquote class="px-6 py-12 text-center sm:px-12 sm:py-16">
+          <p class="font-display text-xl font-semibold leading-relaxed text-ink sm:text-2xl">
+            This is our vision—a future of shared belonging, individual dignity, and common
+            humanity.
+          </p>
+        </blockquote>
+      </figure>
     </section>
   </div>
 </BaseLayout>

@@ -1,7 +1,17 @@
 ---
+import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { INCIDENT_DB_URL } from '../lib/site';
 import { withBase } from '../lib/paths';
+
+// Artwork. The hero is the statement piece — a painterly diverse crowd holding
+// hands across a golden prairie at sunrise — set full-bleed behind the
+// organization name. The circular-crowd illustration supports the principles
+// section. Both are routed through Astro's image pipeline (`astro:assets`) so
+// the build emits responsive, optimized variants rather than shipping the
+// ~900 KB originals raw.
+import heroPrairie from '../assets/hero-prairie.jpg';
+import principlesCircle from '../assets/principles-circle.jpg';
 
 // Three principles, ported verbatim from the Hugo homepage `Principles` block
 // (content/_index.md).
@@ -21,31 +31,57 @@ const principles = [
 ];
 ---
 <BaseLayout title="Common Humanity Coalition" isHome={true}>
-  <!-- Hero / framing -->
-  <section class="border-b border-line bg-gradient-to-b from-sand-50 to-paper">
-    <div class="mx-auto max-w-6xl px-4 py-14 sm:px-6 sm:py-20">
+  <!-- Hero — full-bleed artwork behind the name + mission line. A paper-toned
+       gradient scrim keeps the headline legible (WCAG AA) over the image. -->
+  <section class="relative isolate overflow-hidden border-b border-line">
+    <!-- Background artwork: absolutely positioned, fills the section, cropped
+         toward the central figures/sunrise on narrow viewports. Eager + high
+         fetchpriority because it is the LCP element. -->
+    <Image
+      src={heroPrairie}
+      alt="A painterly scene of a diverse crowd standing hand in hand across a golden prairie at sunrise, gazing toward a hopeful horizon."
+      widths={[640, 960, 1280, 1792]}
+      sizes="100vw"
+      loading="eager"
+      fetchpriority="high"
+      format="webp"
+      quality={63}
+      class="absolute inset-0 -z-20 h-full w-full object-cover object-[50%_38%]"
+    />
+    <!-- Scrim: paper tone fading down over the image for headline contrast,
+         plus a faint warm brand tint that keeps the artwork from muddying. -->
+    <div
+      class="absolute inset-0 -z-10 bg-gradient-to-b from-paper/92 via-paper/55 to-paper/85"
+      aria-hidden="true"
+    ></div>
+    <div
+      class="absolute inset-0 -z-10 mix-blend-multiply bg-accent/10"
+      aria-hidden="true"
+    ></div>
+
+    <div class="mx-auto max-w-6xl px-4 py-24 sm:px-6 sm:py-32 lg:py-40">
       <p class="text-sm font-semibold uppercase tracking-wide text-accent">
         Civil society organization · Canada
       </p>
-      <h1 class="mt-2 max-w-3xl font-display text-4xl font-semibold leading-tight text-ink sm:text-5xl">
+      <h1 class="mt-3 max-w-3xl font-display text-4xl font-semibold leading-tight text-ink drop-shadow-sm sm:text-5xl lg:text-6xl">
         Common Humanity Coalition
       </h1>
-      <p class="mt-5 max-w-2xl text-lg leading-relaxed text-ink-soft">
+      <p class="mt-5 max-w-2xl text-lg font-medium leading-relaxed text-ink sm:text-xl">
         We advocate for change in institutions across Canada to create a society where
         individual uniqueness is celebrated and our shared humanity guides policy decisions.
       </p>
-      <div class="mt-7 flex flex-wrap gap-3">
+      <div class="mt-8 flex flex-wrap gap-3">
         <a
           href={INCIDENT_DB_URL}
           target="_blank"
           rel="noopener"
-          class="rounded-md bg-accent px-5 py-2.5 text-sm font-semibold text-white no-underline transition-colors hover:bg-accent-hover"
+          class="rounded-md bg-accent px-5 py-2.5 text-sm font-semibold text-white no-underline shadow-sm transition-colors hover:bg-accent-hover"
         >
           Explore the Incident Database
         </a>
         <a
           href={withBase('/about')}
-          class="rounded-md border border-line bg-surface px-5 py-2.5 text-sm font-semibold text-ink-soft no-underline transition-colors hover:border-accent-ring hover:text-accent"
+          class="rounded-md border border-line bg-surface/80 px-5 py-2.5 text-sm font-semibold text-ink-soft no-underline backdrop-blur-sm transition-colors hover:border-accent-ring hover:text-accent"
         >
           About the Coalition
         </a>
@@ -54,26 +90,47 @@ const principles = [
   </section>
 
   <div class="mx-auto max-w-6xl px-4 sm:px-6">
-    <!-- Principles -->
+    <!-- Principles — the circular-crowd illustration ("humanity in the round")
+         sits beside the three principle cards on desktop, stacked on mobile. -->
     <section aria-labelledby="principles-h" class="py-14 sm:py-20">
-      <h2 id="principles-h" class="font-display text-2xl font-semibold text-ink">Our principles</h2>
-      <p class="mt-3 max-w-2xl text-base leading-relaxed text-ink-soft">
-        Three principles guide everything we advocate for.
-      </p>
-      <dl class="mt-8 grid gap-5 md:grid-cols-3">
-        {principles.map((p) => (
-          <div class="rounded-xl border border-line bg-surface p-6">
-            <dt class="font-display text-lg font-semibold text-accent">{p.name}</dt>
-            <dd class="mt-2 text-sm leading-relaxed text-ink-soft">{p.body}</dd>
-          </div>
-        ))}
-      </dl>
+      <div class="grid items-center gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)]">
+        <div class="order-2 lg:order-1">
+          <Image
+            src={principlesCircle}
+            alt="A circular illustration of many people of different ages, abilities, and backgrounds standing together holding hands, forming an unbroken ring — humanity in the round."
+            widths={[360, 540, 720, 990]}
+            sizes="(min-width: 1024px) 40vw, 90vw"
+            loading="lazy"
+            format="webp"
+            quality={72}
+            class="mx-auto w-full max-w-md rounded-2xl"
+          />
+        </div>
+        <div class="order-1 lg:order-2">
+          <h2 id="principles-h" class="font-display text-2xl font-semibold text-ink sm:text-3xl">Our principles</h2>
+          <p class="mt-3 max-w-2xl text-base leading-relaxed text-ink-soft">
+            Three principles guide everything we advocate for.
+          </p>
+          <dl class="mt-8 grid gap-5 sm:grid-cols-3 lg:grid-cols-1 xl:grid-cols-3">
+            {principles.map((p) => (
+              <div class="rounded-xl border border-line bg-surface p-6">
+                <dt class="font-display text-lg font-semibold text-accent">{p.name}</dt>
+                <dd class="mt-2 text-sm leading-relaxed text-ink-soft">{p.body}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </div>
     </section>
 
-    <!-- Incident Database -->
-    <section aria-labelledby="idb-h" class="mb-16 rounded-2xl border border-line bg-accent-soft/60 p-8 sm:p-10">
-      <h2 id="idb-h" class="font-display text-2xl font-semibold text-ink">Incident Database</h2>
-      <p class="mt-4 max-w-3xl text-base leading-relaxed text-ink-soft">
+    <!-- Incident Database — deliberately restrained. A deep-teal band hands off
+         to the data product; the calm here contrasts with the art above. -->
+    <section
+      aria-labelledby="idb-h"
+      class="mb-16 overflow-hidden rounded-2xl border border-accent/30 bg-accent p-8 text-white sm:p-10"
+    >
+      <h2 id="idb-h" class="font-display text-2xl font-semibold text-white">Incident Database</h2>
+      <p class="mt-4 max-w-3xl text-base leading-relaxed text-white/85">
         When institutions sort people by immutable traits or lose sight of the individual
         before them, they fall short of the principles we hold in common—Singular Worth,
         Understanding, and Common Humanity. Our public Incident Database documents these
@@ -85,7 +142,7 @@ const principles = [
           href={INCIDENT_DB_URL}
           target="_blank"
           rel="noopener"
-          class="inline-flex items-center gap-1.5 rounded-md bg-accent px-5 py-2.5 text-sm font-semibold text-white no-underline transition-colors hover:bg-accent-hover"
+          class="inline-flex items-center gap-1.5 rounded-md bg-white px-5 py-2.5 text-sm font-semibold text-accent no-underline transition-colors hover:bg-paper"
         >
           Explore the Incident Database
           <span aria-hidden="true">&rarr;</span>

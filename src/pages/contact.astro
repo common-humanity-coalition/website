@@ -1,7 +1,14 @@
 ---
+import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { withBase } from '../lib/paths';
 import { INCIDENT_DB_URL } from '../lib/site';
+
+// The existing contact banner — a calm, on-palette abstract of conversation and
+// connection. Kept as-is per the art direction, but routed through Astro's image
+// pipeline so the build emits optimized responsive variants instead of the raw
+// ~480 KB JPEG that previously shipped from public/.
+import contactBanner from '../assets/contact-banner.jpg';
 
 // The Hugo contact page used a Formspree-backed form with the intro copy below.
 // This site is statically hosted on GitHub Pages, which cannot process form
@@ -29,13 +36,14 @@ import { INCIDENT_DB_URL } from '../lib/site';
     </header>
 
     <figure class="mt-10 overflow-hidden rounded-2xl border border-line">
-      <img
-        src={withBase('/contact.jpg')}
-        alt=""
-        width="1792"
-        height="1024"
+      <Image
+        src={contactBanner}
+        alt="An abstract illustration of speech bubbles, flowing waves, and linked nodes in the coalition's calm blues, greens, and warm sand — a quiet picture of conversation and connection."
+        widths={[640, 960, 1280, 1792]}
+        sizes="(min-width: 768px) 768px, 92vw"
         loading="lazy"
-        decoding="async"
+        format="webp"
+        quality={72}
         class="w-full"
       />
     </figure>
