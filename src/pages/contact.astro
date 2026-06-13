@@ -201,6 +201,11 @@ import contactBanner from '../assets/contact-wash.png';
             form.hidden = true;
             success.hidden = false;
             success.focus?.();
+          } else if (response.status === 403) {
+            // Formspree refuses AJAX when the form has reCAPTCHA enabled;
+            // a native POST is still accepted (Formspree hosts the captcha
+            // challenge page), so hand the submission over to the browser.
+            form.submit();
           } else {
             if (submitBtn) submitBtn.disabled = false;
             error.hidden = false;
