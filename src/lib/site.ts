@@ -5,6 +5,15 @@ export const INCIDENT_DB_URL =
   'https://common-humanity-coalition.github.io/incidents/';
 
 /**
+ * Formspree contact-form endpoint, reinstated from the previous Hugo site.
+ * The form ID (`xgveqoan`) is the owner's existing Formspree form; the contact
+ * page POSTs submissions here. Kept here so the endpoint/ID lives alongside the
+ * other site constants rather than being hard-coded in the page.
+ */
+export const FORMSPREE_FORM_ID = 'xgveqoan';
+export const FORMSPREE_ENDPOINT = `https://formspree.io/f/${FORMSPREE_FORM_ID}`;
+
+/**
  * Default meta description.
  * Ported verbatim from the Hugo `marketing.seo.description` in params.yaml.
  */
