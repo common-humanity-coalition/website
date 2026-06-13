@@ -1,0 +1,58 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { withBase } from '../lib/paths';
+
+interface Props {
+  title: string;
+  description?: string;
+  /** Optional path for canonical/OG; defaults to current URL. */
+  ogType?: string;
+}
+
+const {
+  title,
+  description = 'A public record of documented incidents in which Canadian institutions departed from the principles of singular worth, understanding, and common humanity.',
+  ogType = 'website',
+} = Astro.props;
+
+const fullTitle =
+  title === 'Incident Database — Common Humanity Coalition'
+    ? title
+    : `${title} — Incident Database`;
+
+const canonical = new URL(Astro.url.pathname, Astro.site ?? Astro.url.origin).href;
+---
+<!doctype html>
+<html lang="en-CA">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href={withBase('/favicon.svg')} />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+
+    <!-- Open Graph / Twitter -->
+    <meta property="og:type" content={ogType} />
+    <meta property="og:site_name" content="Incident Database — Common Humanity Coalition" />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+
+    <meta name="theme-color" content="#1f5b56" />
+    <meta name="robots" content="index,follow" />
+  </head>
+  <body class="min-h-screen flex flex-col">
+    <a href="#main" class="skip-link">Skip to main content</a>
+    <Header />
+    <main id="main" class="flex-1 focus:outline-none" tabindex="-1">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

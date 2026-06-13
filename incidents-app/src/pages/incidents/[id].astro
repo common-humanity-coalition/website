@@ -1,0 +1,164 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Badge from '../../components/Badge.astro';
+import {
+  incidents,
+  provinceLabel,
+  areaLabel,
+  typeLabel,
+  basisLabel,
+  formatDate,
+  effectiveDate,
+  institutionDisplay,
+} from '../../lib/data';
+import { withBase } from '../../lib/paths';
+import type { Incident } from '../../lib/types';
+
+export function getStaticPaths() {
+  return incidents.map((incident) => ({
+    params: { id: incident.id },
+    props: { incident },
+  }));
+}
+
+interface Props {
+  incident: Incident;
+}
+const { incident } = Astro.props;
+
+const dateLabel = formatDate(effectiveDate(incident));
+const instName = institutionDisplay(incident.institution_name);
+const isNamed = !!(incident.institution_name && incident.institution_name.trim());
+
+function hostname(url: string): string {
+  try {
+    return new URL(url).hostname.replace(/^www\./, '');
+  } catch {
+    return url;
+  }
+}
+
+const metaDescription =
+  incident.short_description ??
+  (isNamed
+    ? `Documented incident involving ${instName} (${provinceLabel(incident.jurisdiction)}).`
+    : `Documented incident in ${provinceLabel(incident.jurisdiction)}.`);
+---
+<BaseLayout
+  title={instName}
+  description={metaDescription}
+  ogType="article"
+>
+  <article class="mx-auto max-w-3xl px-4 py-10 sm:px-6">
+    <a href={withBase('/incidents')} class="inline-flex items-center gap-1 text-sm font-medium text-accent hover:text-accent-hover">
+      <span aria-hidden="true">←</span> Back to all incidents
+    </a>
+
+    <header class="mt-5">
+      <div class="flex flex-wrap items-center gap-2 text-xs">
+        <Badge tone="jurisdiction" title="Jurisdiction">{provinceLabel(incident.jurisdiction)}</Badge>
+        <span class="text-ink-faint">
+          {dateLabel}{incident.incident_date === null ? ' (date published)' : ''}
+        </span>
+      </div>
+
+      <h1 class:list={["mt-3 font-display text-3xl font-semibold leading-tight text-ink sm:text-4xl break-words", { "italic text-ink-soft": !isNamed }]}>
+        {instName}
+      </h1>
+
+      {incident.short_description && (
+        <p class="mt-3 text-lg leading-relaxed text-ink-soft">{incident.short_description}</p>
+      )}
+
+      <div class="mt-5 flex flex-wrap gap-1.5">
+        {incident.area && <Badge tone="accent" title="Area">{areaLabel(incident.area)}</Badge>}
+        {incident.incident_type && <Badge tone="neutral" title="Incident type">{typeLabel(incident.incident_type)}</Badge>}
+        {incident.targeting_basis.map((b) => (
+          <Badge tone="neutral" title="Targeting basis">{basisLabel(b)}</Badge>
+        ))}
+      </div>
+    </header>
+
+    <hr class="my-8 border-line" />
+
+    {incident.description_of_event && (
+      <section aria-labelledby="desc-h">
+        <h2 id="desc-h" class="font-display text-xl font-semibold text-ink">What happened</h2>
+        <div class="prose-narrative mt-3">
+          <p>{incident.description_of_event}</p>
+        </div>
+      </section>
+    )}
+
+    {incident.expected_harm && (
+      <section aria-labelledby="harm-h" class="mt-8">
+        <h2 id="harm-h" class="font-display text-xl font-semibold text-ink">Expected harm</h2>
+        <div class="prose-narrative mt-3">
+          <p>{incident.expected_harm}</p>
+        </div>
+      </section>
+    )}
+
+    {incident.solution && (
+      <section aria-labelledby="sol-h" class="mt-8">
+        <h2 id="sol-h" class="font-display text-xl font-semibold text-ink">A constructive path forward</h2>
+        <div class="prose-narrative mt-3">
+          <p>{incident.solution}</p>
+        </div>
+      </section>
+    )}
+
+    {incident.quotes.length > 0 && (
+      <section aria-labelledby="quotes-h" class="mt-8">
+        <h2 id="quotes-h" class="font-display text-xl font-semibold text-ink">Supporting quotes</h2>
+        <div class="mt-4 space-y-5">
+          {incident.quotes.map((q) => (
+            <figure class="border-l-4 border-accent bg-sand-50 py-3 pl-5 pr-4">
+              <blockquote class="font-display text-lg italic leading-relaxed text-ink">
+                &ldquo;{q.text}&rdquo;
+              </blockquote>
+              {q.rationale && (
+                <figcaption class="mt-2 text-sm text-ink-faint">
+                  <span class="font-semibold text-ink-soft">Why this matters:</span> {q.rationale}
+                </figcaption>
+              )}
+            </figure>
+          ))}
+        </div>
+      </section>
+    )}
+
+    <section aria-labelledby="sources-h" class="mt-8">
+      <h2 id="sources-h" class="font-display text-xl font-semibold text-ink">Sources</h2>
+      {incident.source_urls.length > 0 ? (
+        <ul class="mt-3 space-y-2">
+          {incident.source_urls.map((url) => (
+            <li>
+              <a
+                href={url}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-1.5 text-sm font-medium text-accent hover:text-accent-hover"
+              >
+                {hostname(url)}
+                <span aria-hidden="true" class="text-ink-faint">↗</span>
+                <span class="sr-only">(opens in a new tab)</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p class="mt-3 text-sm text-ink-faint">
+          No public source links are attached to this entry. Original evidence is preserved in the
+          Coalition&rsquo;s internal record.
+        </p>
+      )}
+    </section>
+
+    <div class="mt-12 border-t border-line pt-6">
+      <a href={withBase('/incidents')} class="inline-flex items-center gap-1 text-sm font-medium text-accent hover:text-accent-hover">
+        <span aria-hidden="true">←</span> Back to all incidents
+      </a>
+    </div>
+  </article>
+</BaseLayout>

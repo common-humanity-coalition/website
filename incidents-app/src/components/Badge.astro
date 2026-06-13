@@ -1,0 +1,19 @@
+---
+// Small inline label chip. `tone` picks the colour treatment.
+interface Props {
+  tone?: 'accent' | 'neutral' | 'jurisdiction';
+  title?: string;
+}
+const { tone = 'neutral', title } = Astro.props;
+const tones: Record<string, string> = {
+  accent: 'bg-accent-soft text-accent border-transparent',
+  neutral: 'bg-sand-100 text-ink-soft border-line',
+  jurisdiction: 'bg-ink text-paper border-transparent',
+};
+---
+<span
+  class={`inline-flex items-center whitespace-nowrap rounded-full border px-2.5 py-0.5 text-xs font-medium ${tones[tone]}`}
+  title={title}
+>
+  <slot />
+</span>

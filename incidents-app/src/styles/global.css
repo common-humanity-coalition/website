@@ -1,0 +1,98 @@
+@import "tailwindcss";
+
+/*
+  Design system — restrained, institutional, calm.
+  Palette: warm neutrals (paper / sand / ink) + one deep accent (deep teal-slate).
+  Fonts: system font stack only (no external CDN), so the site is fast and
+  works offline. A clean serif stack is used for display headings to lend a
+  measured, think-tank register.
+*/
+
+@theme {
+  /* Warm neutrals */
+  --color-paper: #faf8f4;       /* page background */
+  --color-surface: #ffffff;     /* cards */
+  --color-sand-50: #f6f2ea;
+  --color-sand-100: #efe9dd;
+  --color-sand-200: #e3dac8;
+  --color-sand-300: #cfc3a9;
+
+  --color-ink: #1f2421;         /* primary text */
+  --color-ink-soft: #4a514c;    /* secondary text */
+  --color-ink-faint: #767e78;   /* tertiary / meta */
+
+  /* Deep accent — teal-slate */
+  --color-accent: #1f5b56;
+  --color-accent-hover: #18443f;
+  --color-accent-soft: #e4efed;
+  --color-accent-ring: #2f7a73;
+
+  /* Functional */
+  --color-line: #e7e0d3;        /* hairline borders */
+
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+  --font-serif: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua",
+    Georgia, ui-serif, serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background-color: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-feature-settings: "kern", "liga";
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Visible, consistent focus ring for keyboard users (WCAG 2.4.7). */
+:where(a, button, input, select, textarea, [tabindex]):focus-visible {
+  outline: 2px solid var(--color-accent-ring);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Skip-link helper */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 100;
+}
+.skip-link:focus {
+  left: 0.5rem;
+  top: 0.5rem;
+  background: var(--color-accent);
+  color: #fff;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.375rem;
+}
+
+/* Display headings use the serif stack. */
+.font-display {
+  font-family: var(--font-serif);
+  letter-spacing: -0.01em;
+}
+
+/* Constrained prose for long narratives. */
+.prose-narrative {
+  max-width: 68ch;
+  line-height: 1.7;
+  color: var(--color-ink-soft);
+}
+.prose-narrative p {
+  margin-block: 0.85em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}

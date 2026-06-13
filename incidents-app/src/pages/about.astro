@@ -1,0 +1,138 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const principles = [
+  {
+    name: 'Singular worth',
+    body: 'Every person has inherent dignity as an individual and deserves to be recognised for their own character, abilities, and circumstances — never reduced to a demographic category.',
+  },
+  {
+    name: 'Understanding',
+    body: 'A thriving society depends on reason, evidence, and open dialogue. We document actions that compel a single viewpoint or foreclose honest inquiry.',
+  },
+  {
+    name: 'Common humanity',
+    body: 'We are bound by shared experiences that run deeper than surface differences. We record actions that divide people into opposed groups rather than affirming what we hold in common.',
+  },
+];
+---
+<BaseLayout
+  title="About this database"
+  description="How the Common Humanity Coalition defines, reviews, and publishes documented incidents, and how to report one."
+>
+  <div class="mx-auto max-w-3xl px-4 py-10 sm:px-6">
+    <header>
+      <h1 class="font-display text-3xl font-semibold text-ink sm:text-4xl">About this database</h1>
+      <p class="mt-4 text-lg leading-relaxed text-ink-soft">
+        The Incident Database is maintained by the Common Humanity Coalition. It documents publicly
+        recorded incidents in which Canadian institutions departed from the principles of singular
+        worth, understanding, and common humanity, and preserves the original sources so the record
+        can be checked independently.
+      </p>
+    </header>
+
+    <!-- Principles -->
+    <section aria-labelledby="principles-h" class="mt-12">
+      <h2 id="principles-h" class="font-display text-2xl font-semibold text-ink">The three principles</h2>
+      <p class="mt-3 prose-narrative">
+        Every entry is assessed against the principles the Coalition advocates for. An incident is
+        documented when an institution&rsquo;s action is in tension with one or more of them.
+      </p>
+      <dl class="mt-6 space-y-5">
+        {principles.map((p) => (
+          <div class="rounded-xl border border-line bg-surface p-5">
+            <dt class="font-display text-lg font-semibold text-accent">{p.name}</dt>
+            <dd class="mt-1.5 text-sm leading-relaxed text-ink-soft">{p.body}</dd>
+          </div>
+        ))}
+      </dl>
+    </section>
+
+    <!-- What qualifies -->
+    <section aria-labelledby="qualifies-h" class="mt-12">
+      <h2 id="qualifies-h" class="font-display text-2xl font-semibold text-ink">What qualifies as an incident</h2>
+      <div class="prose-narrative mt-3">
+        <p>
+          We document specific, publicly evidenced actions by an institution — a policy, a public
+          statement, a hiring or eligibility rule, a programme, a disciplinary decision, or similar —
+          that fail to treat people as individuals valuable in and of themselves. An incident
+          must be supported by a source that can be cited and preserved.
+        </p>
+        <p>
+          We do not document private opinions, unsupported allegations, or matters that are purely a
+          difference of view without an institutional action behind them. Where the evidence is thin
+          or contested, the entry is held back rather than published.
+        </p>
+      </div>
+    </section>
+
+    <!-- Review process -->
+    <section aria-labelledby="review-h" class="mt-12">
+      <h2 id="review-h" class="font-display text-2xl font-semibold text-ink">How incidents are reviewed</h2>
+      <div class="prose-narrative mt-3">
+        <p>
+          Candidate incidents are gathered from public reporting and submissions, then captured with
+          their original sources so the evidence is preserved at the time of intake. Each candidate
+          is summarised and classified — by jurisdiction, sector, incident type, and the basis on
+          which people were targeted — and a reviewer checks the summary against the sources before
+          anything is published.
+        </p>
+        <p>
+          Only incidents that pass review appear on this site. The structured fields you see — the
+          short description, the account of what happened, the expected harm, and any suggested path
+          forward — reflect that reviewed record.
+        </p>
+      </div>
+    </section>
+
+    <!-- Caveats -->
+    <section aria-labelledby="caveats-h" class="mt-12">
+      <h2 id="caveats-h" class="font-display text-2xl font-semibold text-ink">Data caveats</h2>
+      <ul class="prose-narrative mt-3 list-disc space-y-2 pl-5">
+        <li>
+          The database is a curated record, not a comprehensive census. Counts and breakdowns
+          reflect only what has been documented and published here.
+        </li>
+        <li>
+          Coverage is shaped by what is publicly reported, so some sectors and jurisdictions may be
+          better represented than others.
+        </li>
+        <li>
+          Where an incident date is unknown, the publication date is shown instead.
+        </li>
+        <li>
+          A single incident may be recorded against more than one targeting basis, so basis totals
+          can exceed the number of incidents.
+        </li>
+      </ul>
+    </section>
+
+    <!-- Reporting -->
+    <section aria-labelledby="report-h" class="mt-12">
+      <h2 id="report-h" class="font-display text-2xl font-semibold text-ink">How to report an incident</h2>
+      <div class="prose-narrative mt-3">
+        <p>
+          If you are aware of an incident that fits the criteria above, the Coalition welcomes a
+          tip with a link to a public source. Reports are reviewed before anything is published.
+        </p>
+      </div>
+      <div class="mt-5 rounded-xl border border-line bg-accent-soft/60 p-5">
+        <p class="text-sm text-ink-soft">
+          Reporting and contact details are handled through the Coalition&rsquo;s main site.
+        </p>
+        <a
+          href="https://commonhumanity.us/contact"
+          rel="noopener"
+          class="mt-3 inline-flex items-center gap-1.5 rounded-md bg-accent px-4 py-2 text-sm font-semibold text-white no-underline hover:bg-accent-hover"
+        >
+          Contact the Coalition
+          <span aria-hidden="true">→</span>
+        </a>
+        <p class="mt-2 text-xs text-ink-faint">
+          Contact link is a placeholder pointing to commonhumanity.us; confirm the exact reporting
+          route before launch.
+        </p>
+      </div>
+    </section>
+  </div>
+</BaseLayout>

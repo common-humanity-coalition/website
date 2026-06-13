@@ -1,0 +1,59 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import StatisticsBoard from '../components/StatisticsBoard';
+import {
+  countsByJurisdiction,
+  countsByArea,
+  countsByType,
+  countsByBasis,
+  countsByYear,
+  countsByQuarter,
+  totalIncidents,
+  undatedCount,
+} from '../lib/data';
+
+const total = totalIncidents();
+const undated = undatedCount();
+
+// Use quarters when the record spans few years; years otherwise (keeps the
+// time chart legible).
+const years = countsByYear();
+const useQuarters = years.length <= 3;
+const overTime = useQuarters
+  ? countsByQuarter().map((d) => ({ period: d.quarter, count: d.count }))
+  : years.map((d) => ({ period: d.year, count: d.count }));
+
+const data = {
+  byJurisdiction: countsByJurisdiction(),
+  byArea: countsByArea(),
+  byType: countsByType(),
+  byBasis: countsByBasis(),
+  overTime,
+  timeGranularity: useQuarters ? 'quarter' : 'year',
+  undated,
+};
+---
+<BaseLayout
+  title="Statistics"
+  description="Breakdowns of documented incidents by jurisdiction, sector, incident type, targeting basis, and time."
+>
+  <div class="mx-auto max-w-6xl px-4 py-10 sm:px-6">
+    <header class="max-w-2xl">
+      <h1 class="font-display text-3xl font-semibold text-ink">Statistics</h1>
+      <p class="mt-3 text-base leading-relaxed text-ink-soft">
+        A high-level view of the {total} incidents currently documented. Click any bar to open the
+        matching incidents in the browser. Targeting-basis totals can exceed the incident count
+        because a single incident may be recorded against more than one basis.
+      </p>
+      <p class="mt-3 rounded-md border border-line bg-sand-50 px-4 py-3 text-sm text-ink-soft">
+        <strong class="font-semibold text-ink">A note on counts.</strong> These figures reflect
+        only the incidents the Coalition has documented and published. They are not a comprehensive
+        census of all such incidents in Canada, and should not be read as one.
+      </p>
+    </header>
+
+    <div class="mt-8">
+      <StatisticsBoard client:load data={data} />
+    </div>
+  </div>
+</BaseLayout>

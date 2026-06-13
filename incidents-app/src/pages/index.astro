@@ -1,0 +1,127 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Stat from '../components/Stat.astro';
+import IncidentCard from '../components/IncidentCard.astro';
+import TimeSeriesChart from '../components/charts/TimeSeriesChart';
+import HorizontalBars from '../components/charts/HorizontalBars';
+import {
+  totalIncidents,
+  jurisdictionsCovered,
+  institutionsNamed,
+  dateRange,
+  mostRecent,
+  countsByYear,
+  countsByArea,
+  formatDate,
+} from '../lib/data';
+import { withBase } from '../lib/paths';
+
+const total = totalIncidents();
+const jurisdictions = jurisdictionsCovered();
+const institutions = institutionsNamed();
+const range = dateRange();
+const recent = mostRecent(5);
+
+const overTime = countsByYear().map((d) => ({ period: d.year, count: d.count }));
+const topAreas = countsByArea().slice(0, 8);
+
+const rangeLabel = range
+  ? `${formatDate(range.min)} – ${formatDate(range.max)}`
+  : 'Not available';
+const rangeYears = range ? `${range.min.slice(0, 4)}–${range.max.slice(0, 4)}` : '—';
+---
+<BaseLayout title="Incident Database — Common Humanity Coalition">
+  <!-- Hero / framing -->
+  <section class="border-b border-line bg-gradient-to-b from-sand-50 to-paper">
+    <div class="mx-auto max-w-6xl px-4 py-14 sm:px-6 sm:py-20">
+      <p class="text-sm font-semibold uppercase tracking-wide text-accent">
+        Common Humanity Coalition
+      </p>
+      <h1 class="mt-2 max-w-3xl font-display text-4xl font-semibold leading-tight text-ink sm:text-5xl">
+        A public record of incidents that depart from our common humanity
+      </h1>
+      <p class="mt-5 max-w-2xl text-lg leading-relaxed text-ink-soft">
+        This database is a public record of incidents in which Canadian institutions failed to
+        treat people as individuals valuable in and of themselves. Maintained by the Common
+        Humanity Coalition, every entry is reviewed against three principles —
+        <strong class="font-semibold text-ink">singular worth</strong>,
+        <strong class="font-semibold text-ink">understanding</strong>, and
+        <strong class="font-semibold text-ink">common humanity</strong> — and keeps its original
+        sources on file, so the record can be independently checked.
+      </p>
+      <div class="mt-7 flex flex-wrap gap-3">
+        <a
+          href={withBase('/incidents')}
+          class="rounded-md bg-accent px-5 py-2.5 text-sm font-semibold text-white no-underline transition-colors hover:bg-accent-hover"
+        >
+          Browse the database
+        </a>
+        <a
+          href={withBase('/statistics')}
+          class="rounded-md border border-line bg-surface px-5 py-2.5 text-sm font-semibold text-ink-soft no-underline transition-colors hover:border-accent-ring hover:text-accent"
+        >
+          Explore statistics
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <div class="mx-auto max-w-6xl px-4 sm:px-6">
+    <!-- Headline numbers -->
+    <section class="-mt-8 grid grid-cols-2 gap-4 lg:grid-cols-4" aria-label="Headline figures">
+      <Stat value={total} label="Documented incidents" sub="Reviewed and published" />
+      <Stat value={jurisdictions} label="Jurisdictions covered" sub="Provinces & territories" />
+      <Stat value={institutions} label="Institutions named" sub="Distinct organisations" />
+      <Stat value={rangeYears} label="Years spanned" sub={rangeLabel} />
+    </section>
+
+    <!-- Charts -->
+    <section class="mt-12 grid gap-6 lg:grid-cols-2" aria-label="At a glance">
+      <div class="rounded-xl border border-line bg-surface p-5">
+        <h2 class="font-display text-lg font-semibold text-ink">Incidents over time</h2>
+        <p class="mt-0.5 text-xs text-ink-faint">By year documented.</p>
+        <div class="mt-4">
+          <TimeSeriesChart client:visible data={overTime} ariaLabel="Documented incidents by year" />
+        </div>
+      </div>
+      <div class="rounded-xl border border-line bg-surface p-5">
+        <h2 class="font-display text-lg font-semibold text-ink">Most common areas</h2>
+        <p class="mt-0.5 text-xs text-ink-faint">Top sectors by number of incidents.</p>
+        <div class="mt-4">
+          <HorizontalBars
+            client:visible
+            data={topAreas}
+            ariaLabel="Incidents by area"
+            hrefFor={undefined}
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- Recent incidents -->
+    <section class="mt-14" aria-label="Recent incidents">
+      <div class="flex items-end justify-between gap-4">
+        <h2 class="font-display text-2xl font-semibold text-ink">Recently documented</h2>
+        <a href={withBase('/incidents')} class="shrink-0 text-sm font-semibold text-accent hover:text-accent-hover">
+          View all →
+        </a>
+      </div>
+      <div class="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {recent.map((inc) => <IncidentCard incident={inc} />)}
+      </div>
+    </section>
+
+    <!-- Closing CTA -->
+    <section class="mt-16 rounded-2xl border border-line bg-accent-soft/60 p-8 text-center">
+      <h2 class="font-display text-xl font-semibold text-ink">Looking for something specific?</h2>
+      <p class="mx-auto mt-2 max-w-xl text-sm text-ink-soft">
+        Search by institution, filter by jurisdiction or sector, or read how incidents are
+        reviewed before publication.
+      </p>
+      <div class="mt-5 flex flex-wrap justify-center gap-3">
+        <a href={withBase('/incidents')} class="rounded-md bg-accent px-4 py-2 text-sm font-semibold text-white no-underline hover:bg-accent-hover">Browse incidents</a>
+        <a href={withBase('/about')} class="rounded-md border border-line bg-surface px-4 py-2 text-sm font-semibold text-ink-soft no-underline hover:border-accent-ring hover:text-accent">Read the methodology</a>
+      </div>
+    </section>
+  </div>
+</BaseLayout>

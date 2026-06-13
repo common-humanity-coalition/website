@@ -1,0 +1,18 @@
+# dependencies
+node_modules/
+
+# build output
+dist/
+.astro/
+
+# logs / os
+*.log
+.DS_Store
+
+# env
+.env
+.env.*
+!.env.example
+
+# NOTE: data/snapshot.json is the fixture and IS committed so the site builds
+# without the exporter. The real exporter overwrites it in place.

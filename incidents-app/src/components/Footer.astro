@@ -1,0 +1,50 @@
+---
+import { generatedAt, formatDate } from '../lib/data';
+import { withBase } from '../lib/paths';
+const year = new Date().getUTCFullYear();
+---
+<footer class="mt-20 border-t border-line bg-sand-50">
+  <div class="mx-auto max-w-6xl px-4 py-10 sm:px-6">
+    <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+      <div class="max-w-sm">
+        <p class="font-display text-base font-semibold text-ink">Common Humanity Coalition</p>
+        <p class="mt-2 text-sm leading-relaxed text-ink-soft">
+          We advocate for institutions guided by three principles: singular worth,
+          understanding, and common humanity. This database documents publicly recorded
+          incidents in which Canadian institutions departed from those principles.
+        </p>
+      </div>
+
+      <nav aria-label="Footer" class="text-sm">
+        <p class="font-semibold text-ink">This database</p>
+        <ul class="mt-2 space-y-1.5 text-ink-soft">
+          <li><a class="hover:text-accent" href={withBase('/incidents')}>Browse incidents</a></li>
+          <li><a class="hover:text-accent" href={withBase('/statistics')}>Statistics</a></li>
+          <li><a class="hover:text-accent" href={withBase('/about')}>Methodology &amp; reporting</a></li>
+          <li><a class="hover:text-accent" href="https://commonhumanity.us" rel="noopener">commonhumanity.us</a></li>
+        </ul>
+      </nav>
+
+      <div class="text-sm text-ink-faint">
+        <p class="font-semibold text-ink">Data &amp; licence</p>
+        <p class="mt-2 leading-relaxed">
+          Data current as of <time datetime={generatedAt}>{formatDate(generatedAt)}</time>.
+        </p>
+        <p class="mt-2 leading-relaxed">
+          Licensed under
+          <a
+            class="text-accent underline underline-offset-2 hover:text-accent-hover"
+            href="https://creativecommons.org/licenses/by/4.0/"
+            target="_blank"
+            rel="noopener license"
+          >CC BY 4.0</a>. You may share and adapt this data with attribution to the
+          Common Humanity Coalition.
+        </p>
+      </div>
+    </div>
+
+    <p class="mt-8 border-t border-line pt-6 text-xs text-ink-faint">
+      &copy; {year} Common Humanity Coalition.
+    </p>
+  </div>
+</footer>

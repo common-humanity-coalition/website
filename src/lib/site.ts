@@ -1,8 +1,7 @@
 // Shared site metadata, ported from the Hugo config (config/_default/).
 
-/** The coalition's public Incident Database (outbound link). */
-export const INCIDENT_DB_URL =
-  'https://common-humanity-coalition.github.io/incidents/';
+/** The coalition's public Incident Database (served as a subdirectory of this site). */
+export const INCIDENT_DB_URL = 'https://commonhumanity.us/incidents/';
 
 /**
  * Formspree contact-form endpoint, reinstated from the previous Hugo site.

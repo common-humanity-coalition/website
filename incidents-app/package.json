@@ -1,0 +1,29 @@
+{
+  "name": "idb-public-site",
+  "type": "module",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Public-facing static site for the Common Humanity Coalition incident database.",
+  "scripts": {
+    "gen:fixture": "node scripts/generate-fixture.mjs",
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check": "astro check"
+  },
+  "dependencies": {
+    "@astrojs/check": "^0.9.4",
+    "@astrojs/react": "^4.3.0",
+    "@tailwindcss/vite": "^4.1.11",
+    "@types/react": "^19.1.8",
+    "@types/react-dom": "^19.1.6",
+    "astro": "^5.12.0",
+    "minisearch": "^7.1.2",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "recharts": "^2.15.4",
+    "tailwindcss": "^4.1.11",
+    "typescript": "^5.8.3"
+  }
+}

@@ -1,4 +1,7 @@
-# Build the Astro site and deploy it to GitHub Pages.
+# Build the Astro website AND the incident database (as a subdirectory) and
+# deploy both to GitHub Pages in a single artifact:
+#   - website  -> /            (commonhumanity.us)
+#   - database -> /incidents/  (commonhumanity.us/incidents/)
 on:
   push:
     branches: production
@@ -24,11 +27,32 @@ jobs:
           node-version: 22
           cache: npm
 
-      - name: Install dependencies
+      # --- Root website -> dist/ -------------------------------------------
+      - name: Install website dependencies
         run: npm ci
 
-      - name: Build site
+      - name: Build website
         run: npm run build
+
+      # --- Incident database -> dist/incidents/ ----------------------------
+      # The website has no /incidents route of its own, so the database is
+      # assembled into dist AFTER the root build with no collision.
+      - name: Install incidents-app dependencies
+        run: npm ci
+        working-directory: incidents-app
+
+      - name: Build incidents-app
+        run: npm run build
+        working-directory: incidents-app
+        env:
+          BASE_PATH: /incidents
+          SITE_ORIGIN: https://commonhumanity.us
+
+      - name: Assemble incidents into website dist
+        run: |
+          rm -rf dist/incidents
+          mkdir -p dist/incidents
+          cp -R incidents-app/dist/. dist/incidents/
 
       - name: Upload website artifact
         if: ${{ github.ref == 'refs/heads/production' }}

@@ -1,0 +1,45 @@
+---
+import Badge from './Badge.astro';
+import {
+  provinceLabel,
+  areaLabel,
+  typeLabel,
+  basisLabel,
+  formatDate,
+  effectiveDate,
+  institutionDisplay,
+} from '../lib/data';
+import { withBase } from '../lib/paths';
+import type { Incident } from '../lib/types';
+
+interface Props {
+  incident: Incident;
+}
+const { incident } = Astro.props;
+const dateLabel = formatDate(effectiveDate(incident));
+const named = !!(incident.institution_name && incident.institution_name.trim());
+---
+<article class="group relative rounded-xl border border-line bg-surface p-5 transition-shadow hover:shadow-[0_2px_18px_-8px_rgba(31,91,86,0.35)]">
+  <div class="flex flex-wrap items-center gap-2 text-xs">
+    <Badge tone="jurisdiction" title="Jurisdiction">{provinceLabel(incident.jurisdiction)}</Badge>
+    <span class="text-ink-faint">{dateLabel}</span>
+  </div>
+
+  <h3 class="mt-2.5 font-display text-lg font-semibold leading-snug text-ink">
+    <a href={withBase(`/incidents/${incident.id}`)} class="no-underline after:absolute after:inset-0 hover:text-accent">
+      <span class:list={["relative break-words", { "italic text-ink-soft": !named }]}>{institutionDisplay(incident.institution_name)}</span>
+    </a>
+  </h3>
+
+  {incident.short_description && (
+    <p class="mt-2 text-sm leading-relaxed text-ink-soft">{incident.short_description}</p>
+  )}
+
+  <div class="relative mt-3.5 flex flex-wrap gap-1.5">
+    {incident.area && <Badge tone="accent" title="Area">{areaLabel(incident.area)}</Badge>}
+    {incident.incident_type && <Badge tone="neutral" title="Incident type">{typeLabel(incident.incident_type)}</Badge>}
+    {incident.targeting_basis.map((b) => (
+      <Badge tone="neutral" title="Targeting basis">{basisLabel(b)}</Badge>
+    ))}
+  </div>
+</article>

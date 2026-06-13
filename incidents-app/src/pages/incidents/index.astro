@@ -1,0 +1,36 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import BrowseExplorer from '../../components/browse/BrowseExplorer';
+import { browseRecords, usedVocabularies, totalIncidents } from '../../lib/data';
+
+const records = browseRecords();
+const total = totalIncidents();
+// Filter dropdowns are derived from values actually present on >=1 incident.
+const vocabularies = usedVocabularies;
+---
+<BaseLayout
+  title="Browse incidents"
+  description="Search and filter the Common Humanity Coalition incident database by institution, jurisdiction, sector, incident type, and date."
+>
+  <div class="mx-auto max-w-6xl px-4 py-10 sm:px-6">
+    <header class="max-w-2xl">
+      <h1 class="font-display text-3xl font-semibold text-ink">Browse incidents</h1>
+      <p class="mt-3 text-base leading-relaxed text-ink-soft">
+        Search the full text of {total} documented incidents and narrow by jurisdiction, sector,
+        incident type, targeting basis, or date. Filters are reflected in the page address, so any
+        search you build can be shared as a link.
+      </p>
+    </header>
+
+    <div class="mt-8">
+      <BrowseExplorer client:load records={records} vocabularies={vocabularies} />
+    </div>
+
+    <noscript>
+      <p class="mt-6 rounded-md border border-line bg-sand-50 p-4 text-sm text-ink-soft">
+        Search and filtering require JavaScript. With JavaScript disabled, you can still open any
+        individual incident page directly.
+      </p>
+    </noscript>
+  </div>
+</BaseLayout>
