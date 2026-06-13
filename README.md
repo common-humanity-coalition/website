@@ -1,71 +1,37 @@
 # Common Humanity Coalition — website
 
-The public website for the [Common Humanity Coalition](https://commonhumanity.us), built
-with [Astro](https://astro.build) 5 (static output) and Tailwind CSS 4, in TypeScript.
+The public site for the [Common Humanity Coalition](https://commonhumanity.us). A single
+GitHub Pages repo (custom domain **commonhumanity.us**) holding **two Astro apps**:
 
-It deploys at the domain root (`https://commonhumanity.us`) via GitHub Pages.
+- **Marketing site** — Astro at the repo root, served at `/`.
+- **Public incident database** — Astro in [`incidents-app/`](incidents-app/), served at
+  `/incidents/`. Its incident data is **pulled** from the incident database export
+  endpoint and committed as `incidents-app/data/snapshot.json` (CI can't reach the DB).
 
-## Design language
+This folder is the **canonical dev location** for the site and replaces the retired
+ad-hoc clone at `repo-audits/chc-website`.
 
-This site shares one visual identity with the coalition's **Incident Database** site
-(`idb-public-site`). That repository is the **design-language source of truth**: the
-palette (warm paper neutrals + a deep teal-slate accent), the serif display stack, the
-header/footer structure, and `src/styles/global.css` are copied and adapted from it.
-The two small sites duplicate this design system deliberately rather than sharing a
-package — keep palette/typography changes in sync across both repos.
+## Quickstart
 
-## Build locally
-
-No host installs are required — everything runs in a Node container:
+Everything runs in `node:22` containers — no host installs.
 
 ```sh
-# install deps + build (output goes to dist/, git-ignored)
-docker run --rm -v "$PWD":/app -w /app node:22 sh -c "npm ci && npm run build"
-
-# type/diagnostics check
-docker run --rm -v "$PWD":/app -w /app node:22 sh -c "npm ci && npm run check"
-
-# live-reload dev server (publish a port; allowedHosts already covers containers)
-docker run --rm -v "$PWD":/app -w /app -p 4321:4321 node:22 \
-  sh -c "npm ci && npm run dev -- --host 0.0.0.0"
+make refresh    # pull the latest published incidents into incidents-app/data/snapshot.json
+make build      # build root -> dist/ and incidents-app -> dist/incidents/ (mirrors CI)
+make preview    # serve dist/ via nginx on http://localhost:8093/ (+ /incidents/)
+make deploy     # commit changes, push main, push production (triggers CI), watch + verify
+make publish    # refresh + deploy: pull latest incidents and ship in one go
+make dev        # Astro dev server for the marketing site on :4321 (live reload)
 ```
 
-To preview a production build, serve `dist/` with any static file server, e.g.:
+Typical "bring the live site current" flow: `make publish` (or `make refresh` then,
+after eyeballing `make preview`, `make deploy`).
 
-```sh
-docker run --rm -v "$PWD/dist":/usr/share/nginx/html:ro -p 8091:80 nginx:alpine
-```
+## How it deploys
 
-## Pages
+Develop on **`main`**; deploy by pushing **`production`**. `.github/workflows/page_deploy.yaml`
+builds both apps and publishes the combined `dist/` to GitHub Pages. `make deploy`
+fast-forwards `production` onto `main`, pushes it, and watches the run to success.
 
-| URL         | Source                       |
-| ----------- | ---------------------------- |
-| `/`         | `src/pages/index.astro`      |
-| `/about/`   | `src/pages/about.astro`      |
-| `/contact/` | `src/pages/contact.astro`    |
-| 404         | `src/pages/404.astro`        |
-
-Shared chrome lives in `src/layouts/BaseLayout.astro` (meta/OG, header, footer) and
-`src/components/{Header,Footer}.astro`. Site-wide metadata (Incident Database URL, the
-content licence, the mission one-liner, the SEO description) is centralised in
-`src/lib/site.ts`. `src/lib/paths.ts` provides `withBase()`, kept for parity with the
-database site even though this site serves at the root.
-
-## Deploy
-
-Pushing to the **`production`** branch triggers `.github/workflows/page_deploy.yaml`,
-which builds with `actions/setup-node@v4` (Node 22) + `npm ci` + `npm run build` and
-publishes `dist/` to GitHub Pages. The workflow can also be run via **workflow_dispatch**.
-
-Develop on `main`, then fast-forward / merge `main` into `production` to ship.
-
-## Incident Database
-
-The coalition's public Incident Database is the site's primary call to action. It is
-currently hosted at:
-
-- **https://common-humanity-coalition.github.io/incidents/**
-
-At DNS cutover this will move to **https://incidents.commonhumanity.us**. When that
-happens, update the single constant `INCIDENT_DB_URL` in `src/lib/site.ts` (it feeds the
-header, footer, home page, contact page, and 404).
+See [`CLAUDE.md`](CLAUDE.md) for the full layout, data interface, and conventions, and
+[`incidents-app/README.md`](incidents-app/README.md) for the incident-database app.

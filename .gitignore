@@ -9,6 +9,9 @@ dist/
 *.log
 .DS_Store
 
+# transient snapshot pulled by scripts/refresh-incidents.sh (never committed)
+incidents-app/data/.snapshot.incoming.json
+
 # env
 .env
 .env.*
