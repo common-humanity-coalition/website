@@ -1,0 +1,62 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { withBase } from '../lib/paths';
+import { SITE_DESCRIPTION } from '../lib/site';
+
+interface Props {
+  /** Page-specific title; the org name is appended unless this is the home page. */
+  title: string;
+  description?: string;
+  /** When true, use `title` verbatim (used for the home page). */
+  isHome?: boolean;
+  ogType?: string;
+}
+
+const {
+  title,
+  description = SITE_DESCRIPTION,
+  isHome = false,
+  ogType = 'website',
+} = Astro.props;
+
+const fullTitle = isHome ? title : `${title} — Common Humanity Coalition`;
+
+const canonical = new URL(Astro.url.pathname, Astro.site ?? Astro.url.origin).href;
+---
+<!doctype html>
+<html lang="en-CA">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href={withBase('/favicon.svg')} />
+    <link rel="icon" type="image/png" sizes="700x700" href={withBase('/icon.png')} />
+    <link rel="apple-touch-icon" href={withBase('/icon.png')} />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+
+    <!-- Open Graph / Twitter -->
+    <meta property="og:type" content={ogType} />
+    <meta property="og:site_name" content="Common Humanity Coalition" />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={new URL(withBase('/icon.png'), Astro.site ?? Astro.url.origin).href} />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+
+    <meta name="theme-color" content="#1f5b56" />
+    <meta name="robots" content="index,follow" />
+  </head>
+  <body class="min-h-screen flex flex-col">
+    <a href="#main" class="skip-link">Skip to main content</a>
+    <Header />
+    <main id="main" class="flex-1 focus:outline-none" tabindex="-1">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

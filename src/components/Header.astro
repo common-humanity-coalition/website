@@ -1,0 +1,58 @@
+---
+import { withBase } from '../lib/paths';
+import { INCIDENT_DB_URL } from '../lib/site';
+
+// Adapted from the incident database site's Header. There, the wordmark reads
+// "Incident Database" and commonhumanity.us is the outbound pill. Here the
+// relationship is mirrored: this site is home, and the Incident Database is the
+// outbound link.
+const links = [
+  { href: '/about', label: 'About' },
+  { href: '/contact', label: 'Contact' },
+];
+// Normalise current path (strip trailing slash). Compare against based hrefs
+// (also trailing-slash-stripped) so /about/* still highlights "About".
+const path = Astro.url.pathname.replace(/\/+$/, '') || '/';
+function isActive(href: string): boolean {
+  const based = withBase(href).replace(/\/+$/, '') || '/';
+  if (href === '/') return path === based;
+  return path === based || path.startsWith(based + '/');
+}
+---
+<header class="border-b border-line bg-surface/90 backdrop-blur supports-[backdrop-filter]:bg-surface/75 sticky top-0 z-40">
+  <div class="mx-auto flex max-w-6xl flex-wrap items-center gap-x-6 gap-y-2 px-4 py-3 sm:px-6">
+    <a href={withBase('/')} class="group flex items-baseline gap-2 no-underline">
+      <span class="font-display text-lg font-semibold text-ink">Common Humanity Coalition</span>
+    </a>
+
+    <nav aria-label="Primary" class="order-3 -mx-1 w-full overflow-x-auto sm:order-2 sm:ml-auto sm:w-auto">
+      <ul class="flex items-center gap-1 text-sm">
+        {links.map((l) => (
+          <li>
+            <a
+              href={withBase(l.href)}
+              aria-current={isActive(l.href) ? 'page' : undefined}
+              class:list={[
+                'rounded-md px-3 py-1.5 font-medium no-underline transition-colors',
+                isActive(l.href)
+                  ? 'bg-accent-soft text-accent'
+                  : 'text-ink-soft hover:bg-sand-50 hover:text-ink',
+              ]}
+            >
+              {l.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+
+    <a
+      href={INCIDENT_DB_URL}
+      class="order-2 ml-auto rounded-md border border-line px-3 py-1.5 text-sm font-medium text-ink-soft no-underline transition-colors hover:border-accent-ring hover:text-accent sm:order-3 sm:ml-0"
+      target="_blank"
+      rel="noopener"
+    >
+      Incident Database<span aria-hidden="true" class="ml-1">&rarr;</span>
+    </a>
+  </div>
+</header>

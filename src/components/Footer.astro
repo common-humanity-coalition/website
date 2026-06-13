@@ -1,0 +1,41 @@
+---
+import { withBase } from '../lib/paths';
+import { INCIDENT_DB_URL, MISSION_ONELINER, LICENCE } from '../lib/site';
+const year = new Date().getUTCFullYear();
+---
+<footer class="mt-20 border-t border-line bg-sand-50">
+  <div class="mx-auto max-w-6xl px-4 py-10 sm:px-6">
+    <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+      <div class="max-w-sm">
+        <p class="font-display text-base font-semibold text-ink">Common Humanity Coalition</p>
+        <p class="mt-2 text-sm leading-relaxed text-ink-soft">{MISSION_ONELINER}</p>
+      </div>
+
+      <nav aria-label="Footer" class="text-sm">
+        <p class="font-semibold text-ink">Explore</p>
+        <ul class="mt-2 space-y-1.5 text-ink-soft">
+          <li><a class="hover:text-accent" href={withBase('/about')}>About</a></li>
+          <li>
+            <a class="hover:text-accent" href={INCIDENT_DB_URL} target="_blank" rel="noopener">
+              Incident Database<span aria-hidden="true" class="ml-1">&rarr;</span>
+            </a>
+          </li>
+          <li><a class="hover:text-accent" href={withBase('/contact')}>Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="text-sm text-ink-faint">
+        <p class="font-semibold text-ink">Licence</p>
+        <p class="mt-2 leading-relaxed">
+          Content is licensed under
+          <a class="hover:text-accent" href={LICENCE.url} target="_blank" rel="noopener">{LICENCE.label}</a>
+          (<span class="italic">{LICENCE.name}</span>).
+        </p>
+      </div>
+    </div>
+
+    <p class="mt-8 border-t border-line pt-6 text-xs text-ink-faint">
+      &copy; {year} Common Humanity Coalition.
+    </p>
+  </div>
+</footer>

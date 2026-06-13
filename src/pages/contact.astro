@@ -1,0 +1,80 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { withBase } from '../lib/paths';
+import { INCIDENT_DB_URL } from '../lib/site';
+
+// The Hugo contact page used a Formspree-backed form with the intro copy below.
+// This site is statically hosted on GitHub Pages, which cannot process form
+// submissions, and the source contains no email address or other contact
+// endpoint. So the intro copy is ported verbatim and the page surfaces the ways
+// to engage that the source actually provides (local chapters / the Incident
+// Database), rather than rendering a form that cannot submit.
+---
+<BaseLayout
+  title="Contact"
+  description="Join our growing movement to bring the principles of the Common Humanity Coalition to life in your community."
+>
+  <div class="mx-auto max-w-3xl px-4 py-10 sm:px-6 sm:py-14">
+    <header>
+      <h1 class="font-display text-3xl font-semibold text-ink sm:text-4xl">Contact</h1>
+      <p class="mt-5 text-lg leading-relaxed text-ink-soft">
+        Join our growing movement to bring the principles of the Common Humanity Coalition to
+        life in your community. Whether you have a question, want to get involved, or simply
+        wish to stay informed, we welcome you to reach out. Together, we can foster greater
+        understanding, celebrate our unique individuality, and unite people across all
+        backgrounds in our shared human journey. Your voice and participation are invaluable
+        as we work to create a more compassionate, connected world. Reach out to us today and
+        be part of the change.
+      </p>
+    </header>
+
+    <figure class="mt-10 overflow-hidden rounded-2xl border border-line">
+      <img
+        src={withBase('/contact.jpg')}
+        alt=""
+        width="1792"
+        height="1024"
+        loading="lazy"
+        decoding="async"
+        class="w-full"
+      />
+    </figure>
+
+    <section aria-labelledby="ways-h" class="mt-12">
+      <h2 id="ways-h" class="font-display text-2xl font-semibold text-ink">Ways to get involved</h2>
+      <div class="mt-6 grid gap-5 sm:grid-cols-2">
+        <div class="rounded-xl border border-line bg-surface p-6">
+          <h3 class="font-display text-lg font-semibold text-accent">Join the movement</h3>
+          <p class="mt-2 text-sm leading-relaxed text-ink-soft">
+            Connect with your nearest chapter, attend a community forum, or support our
+            initiatives. Read more about who we are and how we organize.
+          </p>
+          <a
+            href={withBase('/about')}
+            class="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-accent no-underline hover:text-accent-hover"
+          >
+            About the Coalition
+            <span aria-hidden="true">&rarr;</span>
+          </a>
+        </div>
+        <div class="rounded-xl border border-line bg-surface p-6">
+          <h3 class="font-display text-lg font-semibold text-accent">Explore the record</h3>
+          <p class="mt-2 text-sm leading-relaxed text-ink-soft">
+            Our public Incident Database documents moments across Canada where institutions
+            fell short of our shared principles—so that what is recorded can be understood,
+            and what is understood can be changed.
+          </p>
+          <a
+            href={INCIDENT_DB_URL}
+            target="_blank"
+            rel="noopener"
+            class="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-accent no-underline hover:text-accent-hover"
+          >
+            Explore the Incident Database
+            <span aria-hidden="true">&rarr;</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </div>
+</BaseLayout>

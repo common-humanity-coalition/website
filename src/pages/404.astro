@@ -1,0 +1,31 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { withBase } from '../lib/paths';
+import { INCIDENT_DB_URL } from '../lib/site';
+---
+<BaseLayout title="Page not found" description="The page you were looking for could not be found.">
+  <div class="mx-auto max-w-3xl px-4 py-20 text-center sm:px-6 sm:py-28">
+    <p class="text-sm font-semibold uppercase tracking-wide text-accent">Error 404</p>
+    <h1 class="mt-3 font-display text-4xl font-semibold text-ink sm:text-5xl">Page not found</h1>
+    <p class="mx-auto mt-5 max-w-xl text-lg leading-relaxed text-ink-soft">
+      The page you were looking for could not be found. It may have moved, or the link may be
+      out of date.
+    </p>
+    <div class="mt-8 flex flex-wrap justify-center gap-3">
+      <a
+        href={withBase('/')}
+        class="rounded-md bg-accent px-5 py-2.5 text-sm font-semibold text-white no-underline transition-colors hover:bg-accent-hover"
+      >
+        Return home
+      </a>
+      <a
+        href={INCIDENT_DB_URL}
+        target="_blank"
+        rel="noopener"
+        class="rounded-md border border-line bg-surface px-5 py-2.5 text-sm font-semibold text-ink-soft no-underline transition-colors hover:border-accent-ring hover:text-accent"
+      >
+        Explore the Incident Database
+      </a>
+    </div>
+  </div>
+</BaseLayout>

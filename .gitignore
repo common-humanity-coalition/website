@@ -1,7 +1,15 @@
-# Generated files
-public/
-resources/
-.hugo_build.lock
+# dependencies
+node_modules/
 
-# System files
+# build output
+dist/
+.astro/
+
+# logs / os
+*.log
 .DS_Store
+
+# env
+.env
+.env.*
+!.env.example
