@@ -2,6 +2,8 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import MiniSearch from 'minisearch';
 import type { BrowseRecord, Vocabularies } from '../../lib/types';
 import { UNSPECIFIED } from '../../lib/data';
+import { withBase } from '../../lib/paths';
+import { toCsv, downloadCsv } from '../../lib/csv';
 import MultiSelect from './MultiSelect';
 import ResultCard, { type LabelMaps } from './ResultCard';
 
@@ -279,6 +281,38 @@ export default function BrowseExplorer({ records, vocabularies }: Props) {
 
   const hasFilters = chips.length > 0;
 
+  // Export every incident matching the current filters (the full result set,
+  // not just the paginated page on screen) as a CSV of the browse-card fields.
+  // Values use the same human-readable labels shown on the cards; each row links
+  // back to the incident's page.
+  const downloadResults = () => {
+    const origin = typeof window !== 'undefined' ? window.location.origin : '';
+    const header = [
+      'ID',
+      'Incident date',
+      'Institution',
+      'Jurisdiction',
+      'Area',
+      'Incident type',
+      'Targeting basis',
+      'Short description',
+      'URL',
+    ];
+    const rows = results.map((r) => [
+      r.id,
+      r.incident_date ?? '',
+      r.institution_name ?? '',
+      r.jurisdiction ? filterValueLabel(maps.province, r.jurisdiction) : '',
+      r.area ? filterValueLabel(maps.area, r.area) : '',
+      r.incident_type ? filterValueLabel(maps.type, r.incident_type) : '',
+      r.targeting_basis.map((b) => filterValueLabel(maps.basis, b)).join('; '),
+      r.short_description ?? '',
+      origin + withBase(`/incidents/${r.id}`),
+    ]);
+    const stamp = new Date().toISOString().slice(0, 10);
+    downloadCsv(`common-humanity-incidents-${stamp}.csv`, toCsv([header, ...rows]));
+  };
+
   return (
     <div className="grid gap-8 lg:grid-cols-[18rem_1fr]">
       {/* ---- Filter rail ---- */}
@@ -379,6 +413,31 @@ export default function BrowseExplorer({ records, vocabularies }: Props) {
             </button>
           )}
         </form>
+
+        {/* Download the currently filtered incidents as CSV. */}
+        <button
+          type="button"
+          onClick={downloadResults}
+          disabled={results.length === 0}
+          className="mt-3 flex w-full items-center justify-center gap-2 rounded-md bg-accent px-3 py-2 text-sm font-medium text-white transition-colors hover:bg-accent-hover disabled:cursor-not-allowed disabled:opacity-40"
+        >
+          <svg
+            aria-hidden="true"
+            viewBox="0 0 20 20"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth={1.6}
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="h-4 w-4"
+          >
+            <path d="M10 3.5V12M6.75 8.75 10 12l3.25-3.25M4.5 15.5h11" />
+          </svg>
+          Download {results.length} {results.length === 1 ? 'incident' : 'incidents'}
+        </button>
+        <p className="mt-1.5 px-0.5 text-[11px] leading-snug text-ink-faint">
+          CSV of every incident matching your filters (not just this page).
+        </p>
       </aside>
 
       {/* ---- Results ---- */}
