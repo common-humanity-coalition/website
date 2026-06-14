@@ -1,4 +1,6 @@
-# CLAUDE.md — common_humanity_website
+# CLAUDE.md — Common Humanity Coalition website (commonhumanity.us)
+
+> Location: `/Users/server/projects/common_humanity/website/` (under the `common_humanity/` workspace, alongside its workspace-level `../CLAUDE.md`).
 
 Guidance for Claude Code sessions working in this folder. This is the **canonical
 dev location** for the Common Humanity Coalition website; it REPLACES the old ad-hoc
