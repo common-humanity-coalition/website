@@ -1,5 +1,6 @@
 import type { BrowseRecord } from '../../lib/types';
 import { withBase } from '../../lib/paths';
+import { institutionParts } from '../../lib/institution';
 
 export type LabelMaps = {
   province: Record<string, string>;
@@ -41,6 +42,7 @@ function Chip({ children, tone }: { children: React.ReactNode; tone: 'accent' | 
 
 export default function ResultCard({ rec, maps }: { rec: BrowseRecord; maps: LabelMaps }) {
   const lbl = (map: Record<string, string>, v: string) => map[v] ?? humanise(v);
+  const inst = institutionParts(rec.institution_name);
   return (
     <article className="group relative rounded-xl border border-line bg-surface p-5 transition-shadow hover:shadow-[0_2px_18px_-8px_rgba(31,91,86,0.35)]">
       <div className="flex flex-wrap items-center gap-2 text-xs">
@@ -50,13 +52,21 @@ export default function ResultCard({ rec, maps }: { rec: BrowseRecord; maps: Lab
         <span className="text-ink-faint">{fmtDate(rec)}</span>
       </div>
 
-      <h3 className="mt-2.5 font-display text-lg font-semibold leading-snug text-ink">
+      {inst && inst.ancestors.length > 0 && (
+        <p className="mt-2.5 text-xs leading-snug text-ink-faint break-words">
+          {inst.ancestors.join(' › ')}
+        </p>
+      )}
+
+      <h3
+        className={`${inst && inst.ancestors.length > 0 ? 'mt-0.5' : 'mt-2.5'} font-display text-lg font-semibold leading-snug text-ink`}
+      >
         <a
           href={withBase(`/incidents/${rec.id}`)}
           className="no-underline after:absolute after:inset-0 hover:text-accent"
         >
-          {rec.institution_name && rec.institution_name.trim() ? (
-            <span className="relative break-words">{rec.institution_name}</span>
+          {inst ? (
+            <span className="relative break-words">{inst.leaf}</span>
           ) : (
             <span className="relative break-words italic text-ink-soft">Institution not named</span>
           )}

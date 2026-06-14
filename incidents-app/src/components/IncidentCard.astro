@@ -9,6 +9,7 @@ import {
   effectiveDate,
   institutionDisplay,
 } from '../lib/data';
+import { institutionParts } from '../lib/institution';
 import { withBase } from '../lib/paths';
 import type { Incident } from '../lib/types';
 
@@ -18,6 +19,7 @@ interface Props {
 const { incident } = Astro.props;
 const dateLabel = formatDate(effectiveDate(incident));
 const named = !!(incident.institution_name && incident.institution_name.trim());
+const inst = institutionParts(incident.institution_name);
 ---
 <article class="group relative rounded-xl border border-line bg-surface p-5 transition-shadow hover:shadow-[0_2px_18px_-8px_rgba(31,91,86,0.35)]">
   <div class="flex flex-wrap items-center gap-2 text-xs">
@@ -25,9 +27,13 @@ const named = !!(incident.institution_name && incident.institution_name.trim());
     <span class="text-ink-faint">{dateLabel}</span>
   </div>
 
-  <h3 class="mt-2.5 font-display text-lg font-semibold leading-snug text-ink">
+  {inst && inst.ancestors.length > 0 && (
+    <p class="mt-2.5 text-xs leading-snug text-ink-faint break-words">{inst.ancestors.join(' › ')}</p>
+  )}
+
+  <h3 class:list={[inst && inst.ancestors.length > 0 ? "mt-0.5" : "mt-2.5", "font-display text-lg font-semibold leading-snug text-ink"]}>
     <a href={withBase(`/incidents/${incident.id}`)} class="no-underline after:absolute after:inset-0 hover:text-accent">
-      <span class:list={["relative break-words", { "italic text-ink-soft": !named }]}>{institutionDisplay(incident.institution_name)}</span>
+      <span class:list={["relative break-words", { "italic text-ink-soft": !named }]}>{inst ? inst.leaf : institutionDisplay(incident.institution_name)}</span>
     </a>
   </h3>
 
