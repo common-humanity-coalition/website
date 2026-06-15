@@ -82,7 +82,7 @@ const rangeYears = range ? `${range.min.slice(0, 4)}–${range.max.slice(0, 4)}`
             client:visible
             data={topAreas}
             ariaLabel="Incidents by area"
-            hrefFor={undefined}
+            hrefFor={(d) => withBase(`/incidents?area=${encodeURIComponent(d.value)}`)}
           />
         </div>
       </div>
