@@ -79,7 +79,6 @@ const rangeYears = range ? `${range.min.slice(0, 4)}–${range.max.slice(0, 4)}`
         <p class="mt-0.5 text-xs text-ink-faint">Top sectors by number of incidents.</p>
         <div class="mt-4">
           <HorizontalBars
-            client:visible
             data={topAreas}
             ariaLabel="Incidents by area"
             hrefFor={(d) => withBase(`/incidents?area=${encodeURIComponent(d.value)}`)}
