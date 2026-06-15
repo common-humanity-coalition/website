@@ -6,31 +6,16 @@ import {
   countsByArea,
   countsByType,
   countsByBasis,
-  countsByYear,
-  countsByQuarter,
   totalIncidents,
-  undatedCount,
 } from '../lib/data';
 
 const total = totalIncidents();
-const undated = undatedCount();
-
-// Use quarters when the record spans few years; years otherwise (keeps the
-// time chart legible).
-const years = countsByYear();
-const useQuarters = years.length <= 3;
-const overTime = useQuarters
-  ? countsByQuarter().map((d) => ({ period: d.quarter, count: d.count }))
-  : years.map((d) => ({ period: d.year, count: d.count }));
 
 const data = {
   byJurisdiction: countsByJurisdiction(),
   byArea: countsByArea(),
   byType: countsByType(),
   byBasis: countsByBasis(),
-  overTime,
-  timeGranularity: useQuarters ? 'quarter' : 'year',
-  undated,
 };
 ---
 <BaseLayout

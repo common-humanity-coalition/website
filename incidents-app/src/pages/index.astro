@@ -2,7 +2,6 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Stat from '../components/Stat.astro';
 import IncidentCard from '../components/IncidentCard.astro';
-import TimeSeriesChart from '../components/charts/TimeSeriesChart';
 import HorizontalBars from '../components/charts/HorizontalBars';
 import {
   totalIncidents,
@@ -10,7 +9,6 @@ import {
   institutionsNamed,
   dateRange,
   mostRecent,
-  countsByYear,
   countsByArea,
   formatDate,
 } from '../lib/data';
@@ -22,7 +20,6 @@ const institutions = institutionsNamed();
 const range = dateRange();
 const recent = mostRecent(5);
 
-const overTime = countsByYear().map((d) => ({ period: d.year, count: d.count }));
 const topAreas = countsByArea().slice(0, 8);
 
 const rangeLabel = range
@@ -76,14 +73,7 @@ const rangeYears = range ? `${range.min.slice(0, 4)}–${range.max.slice(0, 4)}`
     </section>
 
     <!-- Charts -->
-    <section class="mt-12 grid gap-6 lg:grid-cols-2" aria-label="At a glance">
-      <div class="rounded-xl border border-line bg-surface p-5">
-        <h2 class="font-display text-lg font-semibold text-ink">Incidents over time</h2>
-        <p class="mt-0.5 text-xs text-ink-faint">By year documented.</p>
-        <div class="mt-4">
-          <TimeSeriesChart client:visible data={overTime} ariaLabel="Documented incidents by year" />
-        </div>
-      </div>
+    <section class="mt-12" aria-label="At a glance">
       <div class="rounded-xl border border-line bg-surface p-5">
         <h2 class="font-display text-lg font-semibold text-ink">Most common areas</h2>
         <p class="mt-0.5 text-xs text-ink-faint">Top sectors by number of incidents.</p>
