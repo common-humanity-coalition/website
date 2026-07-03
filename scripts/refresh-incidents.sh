@@ -86,6 +86,20 @@ DIFF_OUT="$(
         process.exit(5);
       }
 
+      // Future-dated incidents distort the site (sort first, skew the year
+      // range). Upstream should never export them; warn loudly if any appear.
+      const today = new Date().toISOString().slice(0, 10);
+      const futureDated = next.incidents.filter(i => i.incident_date && i.incident_date > today);
+      if (futureDated.length > 0) {
+        console.error("");
+        console.error("  WARNING: " + futureDated.length + " incident(s) have a FUTURE incident_date:");
+        for (const i of futureDated.slice(0, 10)) {
+          console.error("    " + i.incident_date + "  " + i.id);
+        }
+        if (futureDated.length > 10) console.error("    ... and " + (futureDated.length - 10) + " more");
+        console.error("  These will sort to the top of the public site. Fix them in the incident database before publishing.");
+      }
+
       const present = process.env.CURRENT_PRESENT === "1";
       let cur = null;
       if (present) {
