@@ -72,6 +72,13 @@ function validateIncident(inc: unknown, i: number): Incident {
 
   if (!isStringArray(o.source_urls)) fail(`incidents[${i}].source_urls must be string[]`);
 
+  // provenance: default a missing value to 'community' so the build survives an
+  // older (pre-provenance) snapshot, but reject any present-but-invalid value.
+  const prov = o.provenance;
+  if (prov !== undefined && prov !== 'community' && prov !== 'monitored')
+    fail(`incidents[${i}].provenance must be 'community'|'monitored'`);
+  const provenance: 'community' | 'monitored' = prov === 'monitored' ? 'monitored' : 'community';
+
   // Normalise blank / whitespace-only institution names to null so "not named"
   // is represented one way everywhere (display, counts, search).
   const instRaw = o.institution_name as string | null;
@@ -96,6 +103,7 @@ function validateIncident(inc: unknown, i: number): Incident {
     solution: optText('solution'),
     quotes,
     source_urls: o.source_urls,
+    provenance,
   };
 }
 
@@ -290,6 +298,9 @@ export interface CountEntry {
   value: string;
   label: string;
   count: number;
+  // Split of `count` by incident provenance. community + monitored === count.
+  community: number;
+  monitored: number;
 }
 
 // Sentinel filter value for "this dimension is null/absent on the incident".
@@ -302,25 +313,40 @@ function countBy(
   labeller: (v: string) => string,
   bucketNull = false
 ): CountEntry[] {
-  const counts = new Map<string, number>();
-  let nullCount = 0;
+  // Per-bucket tallies carry the provenance split alongside the total so the
+  // statistics page can render either a plain or a stacked bar from one dataset.
+  type Tally = { count: number; community: number; monitored: number };
+  const counts = new Map<string, Tally>();
+  const nullTally: Tally = { count: 0, community: 0, monitored: 0 };
+  const bump = (t: Tally, inc: Incident) => {
+    t.count++;
+    if (inc.provenance === 'monitored') t.monitored++;
+    else t.community++;
+  };
   for (const inc of incidents) {
     const raw = selector(inc);
     const values = raw == null ? [] : Array.isArray(raw) ? raw : [raw];
     if (values.length === 0) {
-      nullCount++;
+      bump(nullTally, inc);
       continue;
     }
-    for (const v of values) counts.set(v, (counts.get(v) ?? 0) + 1);
+    for (const v of values) {
+      let t = counts.get(v);
+      if (!t) {
+        t = { count: 0, community: 0, monitored: 0 };
+        counts.set(v, t);
+      }
+      bump(t, inc);
+    }
   }
-  const entries = [...counts.entries()]
-    .map(([value, count]) => ({ value, label: labeller(value), count }))
+  const entries: CountEntry[] = [...counts.entries()]
+    .map(([value, t]) => ({ value, label: labeller(value), ...t }))
     .sort((a, b) => b.count - a.count || a.label.localeCompare(b.label));
   // Bucket null/absent values into a single "Unspecified" entry, kept last so
   // the omission is honest rather than silent. Single-valued dimensions
   // (jurisdiction, area, type) bucket; multi-valued (targeting_basis) does not.
-  if (bucketNull && nullCount > 0) {
-    entries.push({ value: UNSPECIFIED, label: 'Unspecified', count: nullCount });
+  if (bucketNull && nullTally.count > 0) {
+    entries.push({ value: UNSPECIFIED, label: 'Unspecified', ...nullTally });
   }
   return entries;
 }

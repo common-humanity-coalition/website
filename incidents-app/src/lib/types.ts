@@ -32,6 +32,10 @@ export interface Incident {
   solution: string | null;
   quotes: Quote[];
   source_urls: string[];
+  // Coarse origin: "monitored" for incidents auto-ingested from a systematically
+  // monitored public source (e.g. Government of Canada / University Affairs job
+  // postings), "community" for member submissions.
+  provenance: 'community' | 'monitored';
 }
 
 export interface Snapshot {
